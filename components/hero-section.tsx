@@ -24,6 +24,7 @@ export default function HeroSection() {
         className="z-10 text-center px-4"
       >
         <div className="mb-6">
+          hola
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
