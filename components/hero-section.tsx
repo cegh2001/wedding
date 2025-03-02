@@ -4,7 +4,11 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Plane } from "lucide-react"
 
-export default function HeroSection() {
+interface Props {
+  invite: string
+}
+
+export default function HeroSection({invite}:Props) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -24,7 +28,6 @@ export default function HeroSection() {
         className="z-10 text-center px-4"
       >
         <div className="mb-6">
-          hola
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -39,9 +42,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-5xl md:text-7xl font-serif text-white mb-4"
+          className="text-5xl md:text-7xl font-serif text-white mb-4 capitalize"
         >
-          María & Juan
+          {invite}
         </motion.h1>
 
         <motion.div

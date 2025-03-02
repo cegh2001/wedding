@@ -8,7 +8,11 @@ import { Compass, LuggageIcon as Suitcase, Heart } from "lucide-react"
 import DecorativeElement from "./decorative-element"
 import { useTheme } from "@/contexts/ThemeContext"
 
-export default function FarewellSection() {
+interface Props {
+  invite: string
+}
+
+export default function FarewellSection({invite}: Props) {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 })
   const { theme } = useTheme()
@@ -37,15 +41,11 @@ export default function FarewellSection() {
             <div className="space-y-4">
               <div className="flex items-center justify-center gap-2">
                 <div className="h-[1px] flex-1 bg-primary/30"></div>
-                <h2 className="text-4xl md:text-5xl font-serif text-primary">María & Juan</h2>
+                <h2 className="text-4xl md:text-5xl font-serif text-primary capitalize">{invite}</h2>
                 <div className="h-[1px] flex-1 bg-primary/30"></div>
               </div>
 
-              <div className="flex justify-center gap-8 text-primary/70 text-sm">
-                <span>TYPE: BODA</span>
-                <span>CODE: BARCELONA</span>
-                <span>PASAPORTE Nº 15062025</span>
-              </div>
+              
             </div>
 
             {/* Main content */}
