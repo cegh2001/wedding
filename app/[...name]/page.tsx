@@ -25,7 +25,6 @@ export default function Home() {
   const { name } = params;
   const firstParam = name ? name[0] : ""; // Obtiene el primer parámetro de la URL
   const formattedName = firstParam.replace(/[_-]/g, " ");  
-  const {data,error,findByUrl} = useGetWeddingServices({name:firstParam});
  
 
   const [isLoading, setIsLoading] = useState(true);
@@ -68,7 +67,7 @@ export default function Home() {
               <PrepareSection />
               <PassportSection />
               <LocationsSection />
-              <AttendanceSection />
+              <AttendanceSection name={formattedName} url={firstParam}/>
               <ItinerarySection />
               <GiftSection />
               <CountdownSection />
