@@ -1,11 +1,10 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -37,9 +36,13 @@ export interface BodyPostWedding {
   attend: boolean;
 }
 
+// Esquema de validación para el formulario
 const schema = yup.object().shape({
   attendance: yup.string().required("Debes seleccionar una opción"),
 });
+
+// Definir un tema de ejemplo. Puedes obtenerlo desde props o contexto.
+const theme = "warm";
 
 export default function AttendanceSection({ name, url }: Props) {
   const { findByUrl, mutate } = useGetWeddingServices({ name });
@@ -53,7 +56,9 @@ export default function AttendanceSection({ name, url }: Props) {
     setIsLoadingPost,
   } = usePostWeddingService();
 
+  // Estado para controlar la apertura del Dialog
   const [open, setOpen] = useState(false);
+
   const {
     handleSubmit,
     formState: { isSubmitting, errors },
@@ -64,6 +69,7 @@ export default function AttendanceSection({ name, url }: Props) {
     resolver: yupResolver(schema),
   });
 
+  // Selecciona la vista actual según la asistencia registrada
   const ViewAttend =
     attend === null ? (
       <StandarAttend reset={reset} setOpen={setOpen} />
@@ -73,13 +79,14 @@ export default function AttendanceSection({ name, url }: Props) {
       <NoAttend reset={reset} setOpen={setOpen} />
     );
 
+  // Función de envío del formulario
   const onSubmit = async ({ attendance }: any) => {
     setIsLoadingPost(true);
     const body: BodyPostWedding = {
       url,
       name,
       attend: attendance === "yes",
-    };    
+    };
     postWedding(body).then(() => {
       setOpen(false);
       setIsLoadingPost(false);
@@ -90,8 +97,9 @@ export default function AttendanceSection({ name, url }: Props) {
   return (
     <section
       ref={sectionRef}
-      className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
-                  ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
+      className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300 ${
+        theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"
+      }`}
     >
       <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
         <div className="absolute inset-0 w-[200%]">
@@ -133,46 +141,63 @@ export default function AttendanceSection({ name, url }: Props) {
             isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
           }
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-8 max-w-md mx-auto"
+          className={`bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-8 max-w-md mx-auto ${
+            theme === "warm"
+              ? "border border-[#8a6d46]/20"
+              : "border border-wedding-navy/20"
+          }`}
         >
-          {/* aqui se muestra la info */}
           {ViewAttend}
         </motion.div>
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="bg-white border-2 max-w-md border-primary/30">
+        <DialogContent
+          className={`bg-white border-2 max-w-md ${
+            theme === "warm" ? "border-[#8a6d46]/30" : "border-wedding-navy/30"
+          }`}
+        >
           <DialogHeader>
-            <DialogTitle className="text-2xl font-serif text-center text-primary">
+            <DialogTitle
+              className={`text-2xl font-serif text-center ${
+                theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+              }`}
+            >
               Asistirá a la boda
             </DialogTitle>
-            <DialogDescription className="text-center text-primary/80">
+            <DialogDescription
+              className={`text-center ${
+                theme === "warm"
+                  ? "text-[#8a6d46]/80"
+                  : "text-wedding-turquoise"
+              }`}
+            >
               Completa el siguiente formulario para confirmar tu asistencia
             </DialogDescription>
           </DialogHeader>
 
           <form onSubmit={handleSubmit(onSubmit)} className="py-4 space-y-4">
-            <Label className="text-primary">¿Podrás asistir?</Label>
+            <Label
+              className={
+                theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+              }
+            >
+              ¿Podrás asistir?
+            </Label>
             <RadioGroup
               onValueChange={(value) => setValue("attendance", value)}
               {...register("attendance")}
               className="flex space-x-4"
-              defaultValue={attend !== null ? (attend ? "yes" : "no") : undefined}
+              defaultValue={
+                attend !== null ? (attend ? "yes" : "no") : undefined
+              }
             >
               <div className="flex items-center space-x-2">
-                <RadioGroupItem
-                  value="yes"
-                  id="attendance-yes"
-                  
-                />
+                <RadioGroupItem value="yes" id="attendance-yes" />
                 <Label htmlFor="attendance-yes">Sí, asistiré</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem
-                  value="no"
-                  id="attendance-no"
-                  
-                />
+                <RadioGroupItem value="no" id="attendance-no" />
                 <Label htmlFor="attendance-no">No podré asistir</Label>
               </div>
             </RadioGroup>

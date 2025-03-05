@@ -39,30 +39,40 @@ export default function FarewellSection({invite}: Props) {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8 }}
           className={`bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-8 md:p-12 ${
-            theme === "warm" ? "border border-[#8a6d46]/20" : "border border-wedding-navy/20"
+            theme === "warm"
+              ? "border border-[#8a6d46]/20"
+              : "border border-wedding-navy/20"
           }`}
         >
           <div className="text-center space-y-8">
             {/* Passport-like header */}
             <div className="space-y-4">
               <div className="flex items-center justify-center gap-2">
-                <div className="h-[1px] flex-1 bg-primary/30"></div>
-                <h2 className="text-4xl md:text-5xl font-serif text-primary capitalize">{invite}</h2>
-                <div className="h-[1px] flex-1 bg-primary/30"></div>
-              </div>
-
-              
-                <div className={`h-[1px] flex-1 ${theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-navy/30"}`}></div>
+                <div
+                  className={`h-[1px] flex-1 ${
+                    theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-navy/30"
+                  }`}
+                ></div>
                 <h2
-                  className={`text-4xl md:text-5xl font-serif ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}
+                  className={`text-4xl md:text-5xl font-serif ${
+                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                  }`}
                 >
-                  María & Juan
+                  {invite}
                 </h2>
-                <div className={`h-[1px] flex-1 ${theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-navy/30"}`}></div>
+                <div
+                  className={`h-[1px] flex-1 ${
+                    theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-navy/30"
+                  }`}
+                ></div>
               </div>
 
               <div
-                className={`flex justify-center gap-8 ${theme === "warm" ? "text-[#8a6d46]/70" : "text-wedding-navy/70"} text-sm`}
+                className={`flex justify-center gap-8 ${
+                  theme === "warm"
+                    ? "text-[#8a6d46]/70"
+                    : "text-wedding-navy/70"
+                } text-sm`}
               >
                 <span>TYPE: BODA</span>
                 <span>CODE: BARCELONA</span>
@@ -74,17 +84,31 @@ export default function FarewellSection({invite}: Props) {
             <div className="py-8 space-y-6">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                animate={
+                  isInView
+                    ? { opacity: 1, scale: 1 }
+                    : { opacity: 0, scale: 0.8 }
+                }
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="flex justify-center"
               >
                 <div className="w-24 h-24 relative">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Suitcase className={`w-12 h-12 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`} />
+                    <Suitcase
+                      className={`w-12 h-12 ${
+                        theme === "warm"
+                          ? "text-[#8a6d46]"
+                          : "text-wedding-navy"
+                      }`}
+                    />
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center animate-spin-slow">
                     <Compass
-                      className={`w-24 h-24 ${theme === "warm" ? "text-[#8a6d46]/20" : "text-wedding-navy/20"}`}
+                      className={`w-24 h-24 ${
+                        theme === "warm"
+                          ? "text-[#8a6d46]/20"
+                          : "text-wedding-navy/20"
+                      }`}
                     />
                   </div>
                 </div>
@@ -105,17 +129,29 @@ export default function FarewellSection({invite}: Props) {
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                }
                 transition={{ duration: 0.8, delay: 0.7 }}
                 className="flex items-center justify-center gap-2"
               >
-                <Heart className={`w-5 h-5 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`} />
+                <Heart
+                  className={`w-5 h-5 ${
+                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                  }`}
+                />
                 <p
-                  className={`text-2xl md:text-3xl font-serif ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}
+                  className={`text-2xl md:text-3xl font-serif ${
+                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                  }`}
                 >
                   ¡Te esperamos!
                 </p>
-                <Heart className={`w-5 h-5 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`} />
+                <Heart
+                  className={`w-5 h-5 ${
+                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                  }`}
+                />
               </motion.div>
             </div>
 
@@ -124,10 +160,18 @@ export default function FarewellSection({invite}: Props) {
               <div className="flex justify-center">
                 <div className="w-full max-w-md">
                   <div
-                    className={`h-[1px] w-full ${theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-navy/30"}`}
+                    className={`h-[1px] w-full ${
+                      theme === "warm"
+                        ? "bg-[#8a6d46]/30"
+                        : "bg-wedding-navy/30"
+                    }`}
                   ></div>
                   <div
-                    className={`h-[1px] w-full ${theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-navy/30"} mt-1`}
+                    className={`h-[1px] w-full ${
+                      theme === "warm"
+                        ? "bg-[#8a6d46]/30"
+                        : "bg-wedding-navy/30"
+                    } mt-1`}
                   ></div>
                 </div>
               </div>
@@ -136,6 +180,6 @@ export default function FarewellSection({invite}: Props) {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
