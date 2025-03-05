@@ -39,10 +39,17 @@ export default function AttendanceSection() {
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
-                  ${theme === "warm" ? "bg-background" : "bg-white"}`}
+                  ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
     >
-      <div className="absolute inset-0 opacity-[0.15] z-0">
-        <Image src="/placeholder.svg?height=1080&width=1920" alt="World map" fill className="object-cover" />
+      <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
+        <div className="absolute inset-0 w-[200%]">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/38725a18-fb60-4b97-bfd7-72c257d5baa2-MbtlZunOBKD7CcdJCF2OCMveEkJkZf.png"
+            alt="Background gradient"
+            fill
+            className="object-cover animate-slide"
+          />
+        </div>
       </div>
 
       <DecorativeElement type="heart" position="top-8 left-8" delay={0.5} />
@@ -57,7 +64,7 @@ export default function AttendanceSection() {
         >
           <h2
             className={`text-4xl md:text-5xl font-serif mb-6 ${
-              theme === "warm" ? "text-primary" : "text-wedding-navy"
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
             }`}
           >
             Confirma tu Asistencia
@@ -69,28 +76,28 @@ export default function AttendanceSection() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className={`bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-8 max-w-md mx-auto ${
-            theme === "warm" ? "border border-primary/20" : "border border-wedding-navy/20"
+            theme === "warm" ? "border border-[#8a6d46]/20" : "border border-wedding-navy/20"
           }`}
         >
           <div className="text-center mb-6">
             <div
               className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4 ${
-                theme === "warm" ? "bg-primary/10" : "bg-wedding-skyblue/30"
+                theme === "warm" ? "bg-[#8a6d46]/10" : "bg-wedding-skyblue/30"
               }`}
             >
-              <Passport className={`w-10 h-10 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`} />
+              <Passport className={`w-10 h-10 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`} />
             </div>
-            <h3 className={`text-2xl font-serif mb-2 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+            <h3 className={`text-2xl font-serif mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
               ¿Listo para embarcar?
             </h3>
-            <p className={theme === "warm" ? "text-primary/80" : "text-wedding-turquoise"}>
+            <p className={theme === "warm" ? "text-[#8a6d46]/80" : "text-wedding-turquoise"}>
               Tu presencia hará nuestro viaje aún más especial
             </p>
           </div>
 
           <div className="space-y-4 mb-6">
             <div className="flex items-center justify-center">
-              <span className={theme === "warm" ? "text-primary" : "text-wedding-navy"}>
+              <span className={theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}>
                 Confirma tu asistencia y la de tus acompañantes
               </span>
             </div>
@@ -100,8 +107,8 @@ export default function AttendanceSection() {
             onClick={() => setDialogOpen(true)}
             className={`w-full ${
               theme === "warm"
-                ? "bg-primary hover:bg-primary/90 text-white"
-                : "bg-wedding-navy hover:bg-wedding-navy/90 text-white"
+                ? "bg-[#8a6d46] hover:bg-[#8a6d46]/90 text-white"
+                : "bg-wedding-navy hover:bg-wedding-navy/90 text-wedding-skyblue"
             }`}
           >
             Reservar mi lugar
@@ -111,16 +118,16 @@ export default function AttendanceSection() {
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent
-          className={`bg-white border-2 max-w-md ${theme === "warm" ? "border-primary/30" : "border-wedding-navy/30"}`}
+          className={`bg-white border-2 max-w-md ${theme === "warm" ? "border-[#8a6d46]/30" : "border-wedding-navy/30"}`}
         >
           <DialogHeader>
             <DialogTitle
-              className={`text-2xl font-serif text-center ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}
+              className={`text-2xl font-serif text-center ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}
             >
               Reserva tu Asiento
             </DialogTitle>
             <DialogDescription
-              className={`text-center ${theme === "warm" ? "text-primary/80" : "text-wedding-turquoise"}`}
+              className={`text-center ${theme === "warm" ? "text-[#8a6d46]/80" : "text-wedding-turquoise"}`}
             >
               Completa tu tarjeta de embarque para nuestro viaje de amor.
             </DialogDescription>
@@ -130,22 +137,22 @@ export default function AttendanceSection() {
             <div className="py-6 text-center">
               <div
                 className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
-                  theme === "warm" ? "bg-primary/10" : "bg-wedding-skyblue/30"
+                  theme === "warm" ? "bg-[#8a6d46]/10" : "bg-wedding-skyblue/30"
                 }`}
               >
-                <Check className={`h-8 w-8 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`} />
+                <Check className={`h-8 w-8 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`} />
               </div>
-              <h3 className={`text-xl font-medium mb-2 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+              <h3 className={`text-xl font-medium mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
                 ¡Reserva Confirmada!
               </h3>
-              <p className={theme === "warm" ? "text-primary/80" : "text-wedding-turquoise"}>
+              <p className={theme === "warm" ? "text-[#8a6d46]/80" : "text-wedding-turquoise"}>
                 Tu asiento está reservado. ¡Prepárate para despegar hacia nuestra celebración!
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="py-4 space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name" className={theme === "warm" ? "text-primary" : "text-wedding-navy"}>
+                <Label htmlFor="name" className={theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}>
                   Nombre del pasajero
                 </Label>
                 <Input
@@ -154,26 +161,28 @@ export default function AttendanceSection() {
                   required
                   className={`border ${
                     theme === "warm"
-                      ? "border-primary/30 focus-visible:ring-primary/50"
+                      ? "border-[#8a6d46]/30 focus-visible:ring-[#8a6d46]/50"
                       : "border-wedding-navy/30 focus-visible:ring-wedding-turquoise/50"
                   }`}
                 />
               </div>
 
               <div className="space-y-2">
-                <Label className={theme === "warm" ? "text-primary" : "text-wedding-navy"}>Confirmación de vuelo</Label>
+                <Label className={theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}>
+                  Confirmación de vuelo
+                </Label>
                 <RadioGroup defaultValue="yes" className="flex space-x-4">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem
                       value="yes"
                       id="yes"
                       className={
-                        theme === "warm" ? "text-primary border-primary" : "text-wedding-navy border-wedding-navy"
+                        theme === "warm" ? "text-[#8a6d46] border-[#8a6d46]" : "text-wedding-navy border-wedding-navy"
                       }
                     />
                     <Label
                       htmlFor="yes"
-                      className={`cursor-pointer ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}
+                      className={`cursor-pointer ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}
                     >
                       Sí, asistiré
                     </Label>
@@ -183,12 +192,12 @@ export default function AttendanceSection() {
                       value="no"
                       id="no"
                       className={
-                        theme === "warm" ? "text-primary border-primary" : "text-wedding-navy border-wedding-navy"
+                        theme === "warm" ? "text-[#8a6d46] border-[#8a6d46]" : "text-wedding-navy border-wedding-navy"
                       }
                     />
                     <Label
                       htmlFor="no"
-                      className={`cursor-pointer ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}
+                      className={`cursor-pointer ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}
                     >
                       No podré asistir
                     </Label>
@@ -197,14 +206,14 @@ export default function AttendanceSection() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="guests" className={theme === "warm" ? "text-primary" : "text-wedding-navy"}>
+                <Label htmlFor="guests" className={theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}>
                   Pasajeros adicionales
                 </Label>
                 <Select defaultValue="0">
                   <SelectTrigger
                     className={`border ${
                       theme === "warm"
-                        ? "border-primary/30 text-primary focus-visible:ring-primary/50"
+                        ? "border-[#8a6d46]/30 text-[#8a6d46] focus-visible:ring-[#8a6d46]/50"
                         : "border-wedding-navy/30 text-wedding-navy focus-visible:ring-wedding-turquoise/50"
                     }`}
                   >
@@ -220,7 +229,7 @@ export default function AttendanceSection() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="dietary" className={theme === "warm" ? "text-primary" : "text-wedding-navy"}>
+                <Label htmlFor="dietary" className={theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}>
                   Menú especial
                 </Label>
                 <Input
@@ -228,7 +237,7 @@ export default function AttendanceSection() {
                   placeholder="Alergias o restricciones alimentarias"
                   className={`border ${
                     theme === "warm"
-                      ? "border-primary/30 focus-visible:ring-primary/50"
+                      ? "border-[#8a6d46]/30 focus-visible:ring-[#8a6d46]/50"
                       : "border-wedding-navy/30 focus-visible:ring-wedding-turquoise/50"
                   }`}
                 />
@@ -238,7 +247,7 @@ export default function AttendanceSection() {
                 type="submit"
                 className={`w-full ${
                   theme === "warm"
-                    ? "bg-primary hover:bg-primary/90 text-white"
+                    ? "bg-[#8a6d46] hover:bg-[#8a6d46]/90 text-white"
                     : "bg-wedding-navy hover:bg-wedding-navy/90 text-white"
                 }`}
               >

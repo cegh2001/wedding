@@ -30,10 +30,17 @@ export default function GiftSection() {
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
-                  ${theme === "warm" ? "bg-background" : "bg-white"}`}
+                  ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
     >
-      <div className="absolute inset-0 opacity-[0.15] z-0">
-        <Image src="/placeholder.svg?height=1080&width=1920" alt="World map" fill className="object-cover" />
+      <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
+        <div className="absolute inset-0 w-[200%]">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/38725a18-fb60-4b97-bfd7-72c257d5baa2-MbtlZunOBKD7CcdJCF2OCMveEkJkZf.png"
+            alt="Background gradient"
+            fill
+            className="object-cover animate-slide"
+          />
+        </div>
       </div>
 
       <DecorativeElement type="compass" position="top-8 right-8" delay={0.5} />
@@ -49,28 +56,28 @@ export default function GiftSection() {
           <div className="flex justify-center mb-6">
             <div
               className={`w-20 h-20 rounded-full flex items-center justify-center ${
-                theme === "warm" ? "bg-primary/10" : "bg-wedding-skyblue/30"
+                theme === "warm" ? "bg-[#8a6d46]/10" : "bg-wedding-skyblue/30"
               }`}
             >
-              <Gift className={`w-10 h-10 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`} />
+              <Gift className={`w-10 h-10 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`} />
             </div>
           </div>
 
           <h2
             className={`text-4xl md:text-5xl font-serif mb-6 ${
-              theme === "warm" ? "text-primary" : "text-wedding-navy"
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
             }`}
           >
             Regalo
           </h2>
 
-          <p className={`text-xl mb-2 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+          <p className={`text-xl mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
             Lo más importante es vuestra presencia,
           </p>
-          <p className={`text-xl mb-2 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+          <p className={`text-xl mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
             pero si deseáis hacernos un regalo,
           </p>
-          <p className={`text-xl mb-6 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+          <p className={`text-xl mb-6 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
             aquí dejamos nuestro número de cuenta
           </p>
         </motion.div>
@@ -81,11 +88,11 @@ export default function GiftSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className={`rounded-lg border p-4 mb-8 ${
             theme === "warm"
-              ? "bg-white/50 backdrop-blur-sm border-primary/30"
+              ? "bg-white/50 backdrop-blur-sm border-[#8a6d46]/30"
               : "bg-wedding-skyblue/30 border-wedding-navy/30"
           }`}
         >
-          <p className={`text-center text-xl font-medium ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+          <p className={`text-center text-xl font-medium ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
             {accountNumber}
           </p>
         </motion.div>
@@ -101,8 +108,8 @@ export default function GiftSection() {
             variant="outline"
             className={`${
               theme === "warm"
-                ? "border-primary/50 text-primary hover:bg-primary/10"
-                : "border-wedding-navy/50 text-wedding-navy hover:bg-wedding-skyblue/30"
+                ? "border-[#8a6d46]/50 text-[#8a6d46] hover:bg-[#8a6d46]/10 hover:text-[#8a6d46]"
+                : "border-wedding-navy/50 text-wedding-navy hover:bg-wedding-skyblue/30 hover:text-wedding-navy"
             }`}
           >
             {copied ? (

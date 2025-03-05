@@ -64,7 +64,7 @@ export default function RsvpSection() {
             </div>
             <div className="h-[1px] w-12 bg-[#2c3e50]/30"></div>
           </div>
-          <p className="text-[#2c3e50]/80">Por favor, confirma tu asistencia antes del 15 de mayo de 2025</p>
+          <p className="text-[#2c3e50]/80">Por favor, confirma tu asistencia antes del 24 de abril de 2025</p>
         </motion.div>
 
         <motion.div

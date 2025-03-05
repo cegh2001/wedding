@@ -24,11 +24,18 @@ export default function ItinerarySection() {
   return (
     <section
       ref={sectionRef}
-      className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
-                  ${theme === "warm" ? "bg-background" : "bg-white"}`}
+      className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 transition-colors duration-300
+                  ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
     >
-      <div className="absolute inset-0 opacity-[0.15] z-0">
-        <Image src="/placeholder.svg?height=1080&width=1920" alt="World map" fill className="object-cover" />
+      <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
+        <div className="absolute inset-0 w-[200%]">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/38725a18-fb60-4b97-bfd7-72c257d5baa2-MbtlZunOBKD7CcdJCF2OCMveEkJkZf.png"
+            alt="Background gradient"
+            fill
+            className="object-cover animate-slide"
+          />
+        </div>
       </div>
 
       <div className="max-w-3xl mx-auto w-full relative z-10">
@@ -40,7 +47,7 @@ export default function ItinerarySection() {
         >
           <h2
             className={`text-4xl md:text-5xl font-serif mb-6 ${
-              theme === "warm" ? "text-primary" : "text-wedding-navy"
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
             }`}
           >
             Itinerario
@@ -51,7 +58,7 @@ export default function ItinerarySection() {
           {/* Vertical line */}
           <div
             className={`absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 ${
-              theme === "warm" ? "bg-primary/50" : "bg-wedding-turquoise/50"
+              theme === "warm" ? "bg-[#8a6d46]/50" : "bg-wedding-turquoise/50"
             }`}
           ></div>
 
@@ -65,7 +72,7 @@ export default function ItinerarySection() {
                 className="flex items-center"
               >
                 <div className={`w-1/2 pr-8 text-right ${index % 2 !== 0 ? "order-1" : ""}`}>
-                  <p className={`text-xl font-medium ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+                  <p className={`text-xl font-medium ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
                     {item.time}
                   </p>
                 </div>
@@ -74,16 +81,18 @@ export default function ItinerarySection() {
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center ${
                       theme === "warm"
-                        ? "bg-background border-2 border-primary"
+                        ? "bg-[#f8f5f0] border-2 border-[#8a6d46]"
                         : "bg-white border-2 border-wedding-navy"
                     }`}
                   >
-                    <div className={theme === "warm" ? "text-primary" : "text-wedding-navy"}>{item.icon}</div>
+                    <div className={theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}>{item.icon}</div>
                   </div>
                 </div>
 
                 <div className={`w-1/2 pl-8 ${index % 2 === 0 ? "order-1" : ""}`}>
-                  <p className={`text-xl font-medium ${theme === "warm" ? "text-primary" : "text-wedding-turquoise"}`}>
+                  <p
+                    className={`text-xl font-medium ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-turquoise"}`}
+                  >
                     {item.event}
                   </p>
                 </div>

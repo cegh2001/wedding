@@ -32,10 +32,17 @@ export default function LocationsSection() {
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 transition-colors duration-300
-                  ${theme === "warm" ? "bg-background" : "bg-white"}`}
+                  ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
     >
-      <div className="absolute inset-0 opacity-[0.15] z-0">
-        <Image src="/placeholder.svg?height=1080&width=1920" alt="World map" fill className="object-cover" />
+      <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
+        <div className="absolute inset-0 w-[200%]">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/38725a18-fb60-4b97-bfd7-72c257d5baa2-MbtlZunOBKD7CcdJCF2OCMveEkJkZf.png"
+            alt="Background gradient"
+            fill
+            className="object-cover animate-slide"
+          />
+        </div>
       </div>
 
       <div className="max-w-2xl mx-auto w-full relative z-10">
@@ -45,10 +52,10 @@ export default function LocationsSection() {
             className={`px-6 py-2 rounded-full transition-colors ${
               activeLocation === "escala"
                 ? theme === "warm"
-                  ? "bg-primary text-white"
+                  ? "bg-[#8a6d46] text-white"
                   : "bg-wedding-navy text-white"
                 : theme === "warm"
-                  ? "bg-white/50 text-primary hover:bg-white/80"
+                  ? "bg-white/50 text-[#8a6d46] hover:bg-white/80"
                   : "bg-wedding-skyblue/50 text-wedding-navy hover:bg-wedding-skyblue/80"
             }`}
           >
@@ -59,10 +66,10 @@ export default function LocationsSection() {
             className={`px-6 py-2 rounded-full transition-colors ${
               activeLocation === "destino"
                 ? theme === "warm"
-                  ? "bg-primary text-white"
+                  ? "bg-[#8a6d46] text-white"
                   : "bg-wedding-navy text-white"
                 : theme === "warm"
-                  ? "bg-white/50 text-primary hover:bg-white/80"
+                  ? "bg-white/50 text-[#8a6d46] hover:bg-white/80"
                   : "bg-wedding-skyblue/50 text-wedding-navy hover:bg-wedding-skyblue/80"
             }`}
           >
@@ -81,7 +88,7 @@ export default function LocationsSection() {
           <div className="flex justify-center mb-6">
             <div
               className={`w-20 h-20 flex items-center justify-center ${
-                theme === "warm" ? "text-primary" : "text-wedding-navy"
+                theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
               }`}
             >
               {locations[activeLocation].icon}
@@ -90,14 +97,14 @@ export default function LocationsSection() {
 
           <h3
             className={`text-2xl md:text-3xl font-serif mb-4 ${
-              theme === "warm" ? "text-primary" : "text-wedding-navy"
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
             }`}
           >
             {locations[activeLocation].name}
           </h3>
 
           {locations[activeLocation].address.map((line, index) => (
-            <p key={index} className={`mb-1 ${theme === "warm" ? "text-primary" : "text-wedding-turquoise"}`}>
+            <p key={index} className={`mb-1 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-turquoise"}`}>
               {line}
             </p>
           ))}
@@ -109,7 +116,7 @@ export default function LocationsSection() {
               rel="noopener noreferrer"
               className={`inline-block px-6 py-2 rounded-full transition-colors ${
                 theme === "warm"
-                  ? "bg-primary text-white hover:bg-primary/90"
+                  ? "bg-[#8a6d46] text-white hover:bg-[#8a6d46]/90"
                   : "bg-wedding-navy text-white hover:bg-wedding-navy/90"
               }`}
             >

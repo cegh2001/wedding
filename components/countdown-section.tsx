@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import Image from "next/image"
+import { Clock } from "lucide-react"
 import { useTheme } from "@/contexts/ThemeContext"
 
 export default function CountdownSection() {
@@ -20,7 +20,7 @@ export default function CountdownSection() {
 
   useEffect(() => {
     // Set your wedding date here - format: year, month (0-11), day, hour, minute
-    const weddingDate = new Date(2025, 5, 15, 18, 0, 0).getTime()
+    const weddingDate = new Date(2025, 4, 24, 18, 0, 0).getTime()
 
     const timer = setInterval(() => {
       const now = new Date().getTime()
@@ -51,10 +51,18 @@ export default function CountdownSection() {
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
-                  ${theme === "warm" ? "bg-background" : "bg-white"}`}
+                  ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
     >
-      <div className="absolute inset-0 opacity-[0.15] z-0">
-        <Image src="/placeholder.svg?height=1080&width=1920" alt="World map" fill className="object-cover" />
+      <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
+        <div className="absolute inset-0 w-[200%]">
+          <div
+            style={{
+              backgroundImage: `url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/38725a18-fb60-4b97-bfd7-72c257d5baa2-MbtlZunOBKD7CcdJCF2OCMveEkJkZf.png")`,
+              backgroundSize: "cover",
+            }}
+            className="w-full h-full animate-slide"
+          />
+        </div>
       </div>
 
       <div className="max-w-4xl mx-auto w-full relative z-10">
@@ -65,23 +73,17 @@ export default function CountdownSection() {
           className="text-center mb-12"
         >
           <div className="flex justify-center mb-6">
-            <Image
-              src="/placeholder.svg?height=100&width=100"
-              alt="Hot air balloon"
-              width={80}
-              height={80}
-              className={theme === "warm" ? "opacity-80" : "opacity-60"}
-            />
+            <Clock className={`w-20 h-20 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`} />
           </div>
 
           <h2
             className={`text-3xl md:text-4xl font-serif mb-4 ${
-              theme === "warm" ? "text-primary" : "text-wedding-navy"
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
             }`}
           >
             Cuenta regresiva
           </h2>
-          <p className={`text-xl italic ${theme === "warm" ? "text-primary" : "text-wedding-turquoise"}`}>
+          <p className={`text-xl italic ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-turquoise"}`}>
             para iniciar el embarque a la mejor fiesta
           </p>
         </motion.div>
@@ -97,19 +99,19 @@ export default function CountdownSection() {
               <div
                 className={`w-full aspect-square rounded-lg flex items-center justify-center mb-2 ${
                   theme === "warm"
-                    ? "bg-white/50 backdrop-blur-sm border border-primary/30"
+                    ? "bg-white/50 backdrop-blur-sm border border-[#8a6d46]/30"
                     : "bg-wedding-skyblue/50 border border-wedding-navy/30"
                 }`}
               >
                 <span
                   className={`text-4xl md:text-5xl font-bold ${
-                    theme === "warm" ? "text-primary" : "text-wedding-navy"
+                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
                   }`}
                 >
                   {Object.values(timeLeft)[index]}
                 </span>
               </div>
-              <span className={`text-sm font-medium ${theme === "warm" ? "text-primary" : "text-wedding-turquoise"}`}>
+              <span className={`text-sm font-medium ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-turquoise"}`}>
                 {label}
               </span>
             </div>

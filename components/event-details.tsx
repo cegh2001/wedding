@@ -46,7 +46,7 @@ export default function EventDetails() {
               </div>
             </div>
             <h3 className="text-xl font-serif text-white text-center mb-2">Fecha</h3>
-            <p className="text-center text-white/90">15 de Junio, 2025</p>
+            <p className="text-center text-white/90">24 de Mayo, 2025</p>
             <div className="mt-4 pt-4 border-t border-white/20">
               <p className="text-center text-white/80 text-sm">
                 Contamos los días para compartir este momento especial con vosotros
