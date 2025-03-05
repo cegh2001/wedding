@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { Clock } from "lucide-react"
 import { useTheme } from "@/contexts/ThemeContext"
+import Image from "next/image"
 
 export default function CountdownSection() {
   const sectionRef = useRef(null)
@@ -55,12 +56,11 @@ export default function CountdownSection() {
     >
       <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
         <div className="absolute inset-0 w-[200%]">
-          <div
-            style={{
-              backgroundImage: `url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/38725a18-fb60-4b97-bfd7-72c257d5baa2-MbtlZunOBKD7CcdJCF2OCMveEkJkZf.png")`,
-              backgroundSize: "cover",
-            }}
-            className="w-full h-full animate-slide"
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/38725a18-fb60-4b97-bfd7-72c257d5baa2-MbtlZunOBKD7CcdJCF2OCMveEkJkZf.png"
+            alt="Background gradient"
+            fill
+            className="object-cover animate-slide"
           />
         </div>
       </div>
@@ -73,7 +73,11 @@ export default function CountdownSection() {
           className="text-center mb-12"
         >
           <div className="flex justify-center mb-6">
-            <Clock className={`w-20 h-20 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`} />
+            <Clock
+              className={`w-20 h-20 ${
+                theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+              }`}
+            />
           </div>
 
           <h2
@@ -83,7 +87,11 @@ export default function CountdownSection() {
           >
             Cuenta regresiva
           </h2>
-          <p className={`text-xl italic ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-turquoise"}`}>
+          <p
+            className={`text-xl italic ${
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-turquoise"
+            }`}
+          >
             para iniciar el embarque a la mejor fiesta
           </p>
         </motion.div>
@@ -111,7 +119,11 @@ export default function CountdownSection() {
                   {Object.values(timeLeft)[index]}
                 </span>
               </div>
-              <span className={`text-sm font-medium ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-turquoise"}`}>
+              <span
+                className={`text-sm font-medium ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-turquoise"
+                }`}
+              >
                 {label}
               </span>
             </div>
@@ -119,6 +131,6 @@ export default function CountdownSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
