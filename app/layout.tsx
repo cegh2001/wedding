@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Wedding Invitation",
   description: "Join us for our special day",
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -25,3 +26,6 @@ export default function RootLayout({
   )
 }
 
+
+
+import './globals.css'

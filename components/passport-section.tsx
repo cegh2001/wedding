@@ -17,11 +17,21 @@ export default function PassportSection() {
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 transition-colors duration-300
                   ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
     >
+      <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
+        <div className="absolute inset-0 w-[200%]">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/38725a18-fb60-4b97-bfd7-72c257d5baa2-MbtlZunOBKD7CcdJCF2OCMveEkJkZf.png"
+            alt="Background gradient"
+            fill
+            className="object-cover animate-slide"
+          />
+        </div>
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8 }}
-        className="relative max-w-sm md:max-w-lg w-full mx-auto bg-white rounded-lg shadow-2xl overflow-hidden"
+        className="relative z-10 max-w-sm md:max-w-lg w-full mx-auto bg-white rounded-lg shadow-2xl overflow-hidden"
         style={{
           backgroundImage:
             theme === "warm"
@@ -31,7 +41,12 @@ export default function PassportSection() {
       >
         {/* Header Image */}
         <div className="relative w-full h-36 md:h-48 overflow-hidden">
-          <Image src="/placeholder.svg?height=400&width=600" alt="Hot air balloons" fill className="object-cover" />
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20241124-WA0177%5B1%5D.jpg-yr7zEW5IOE9EuFSaEbtSghG9vTeu7w.jpeg"
+            alt="Pareja en la montaña"
+            fill
+            className="object-cover"
+          />
         </div>
 
         {/* Passport Content */}
@@ -63,7 +78,7 @@ export default function PassportSection() {
 
           <div className="space-y-2 md:space-y-4 text-sm md:text-base">
             {[
-              { label: "Fecha", value: "15 de Junio, 2025" },
+              { label: "Fecha", value: "24 de Mayo, 2025" },
               { label: "Hora", value: "18:00 H" },
               { label: "Destino", value: "Barcelona" },
               { label: "Ceremonia", value: "Santa María Reina de Pedralbes" },

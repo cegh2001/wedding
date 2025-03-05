@@ -90,15 +90,18 @@ export default function AttendanceSection({ name, url }: Props) {
   return (
     <section
       ref={sectionRef}
-      className="h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300"
+      className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
+                  ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
     >
-      <div className="absolute inset-0 opacity-[0.15] z-0">
-        <Image
-          src="/placeholder.svg?height=1080&width=1920"
-          alt="World map"
-          fill
-          className="object-cover"
-        />
+      <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
+        <div className="absolute inset-0 w-[200%]">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/38725a18-fb60-4b97-bfd7-72c257d5baa2-MbtlZunOBKD7CcdJCF2OCMveEkJkZf.png"
+            alt="Background gradient"
+            fill
+            className="object-cover animate-slide"
+          />
+        </div>
       </div>
 
       <DecorativeElement type="heart" position="top-8 left-8" delay={0.5} />
@@ -115,7 +118,11 @@ export default function AttendanceSection({ name, url }: Props) {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-serif mb-6 text-primary">
+          <h2
+            className={`text-4xl md:text-5xl font-serif mb-6 ${
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+            }`}
+          >
             Confirma tu Asistencia
           </h2>
         </motion.div>

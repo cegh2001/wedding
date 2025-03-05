@@ -100,3 +100,16 @@
   animation: spin-slow 20s linear infinite;
 }
 
+@keyframes slideBackground {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide {
+  animation: slideBackground 60s linear infinite;
+}
+

@@ -18,7 +18,7 @@ export default function HeroSection({invite}:Props) {
   if (!mounted) return null
 
   return (
-    <section className="h-screen w-full snap-start flex flex-col items-center justify-center relative overflow-hidden bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center">
+    <section className="h-screen w-full snap-start flex flex-col items-center justify-center relative overflow-hidden bg-[url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_20241202_152946%5B1%5D.jpg-tXGcoJXTUGvhUjdZPRWuPaM3hOXEJR.jpeg')] bg-cover bg-center">
       <div className="absolute inset-0 bg-black/30 z-0"></div>
 
       <motion.div
@@ -64,7 +64,7 @@ export default function HeroSection({invite}:Props) {
           transition={{ duration: 0.8, delay: 1.5 }}
           className="text-white text-xl md:text-2xl font-light"
         >
-          15 · Junio · 2025
+          24 · Mayo · 2025
         </motion.p>
 
         <motion.div

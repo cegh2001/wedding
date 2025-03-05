@@ -17,10 +17,17 @@ export default function PhotosSection() {
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
-                  ${theme === "warm" ? "bg-background" : "bg-white"}`}
+                  ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
     >
-      <div className="absolute inset-0 opacity-[0.15] z-0">
-        <Image src="/placeholder.svg?height=1080&width=1920" alt="World map" fill className="object-cover" />
+      <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
+        <div className="absolute inset-0 w-[200%]">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/38725a18-fb60-4b97-bfd7-72c257d5baa2-MbtlZunOBKD7CcdJCF2OCMveEkJkZf.png"
+            alt="Background gradient"
+            fill
+            className="object-cover animate-slide"
+          />
+        </div>
       </div>
 
       <DecorativeElement type="compass" position="top-8 left-8" delay={0.5} />
@@ -35,34 +42,34 @@ export default function PhotosSection() {
         >
           <h2
             className={`text-4xl md:text-5xl font-serif mb-6 ${
-              theme === "warm" ? "text-primary" : "text-wedding-navy"
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
             }`}
           >
             Fotos
           </h2>
 
           <div className="flex justify-center mb-8">
-            <div className={`w-32 h-[2px] ${theme === "warm" ? "bg-primary/30" : "bg-wedding-turquoise/30"}`}></div>
+            <div className={`w-32 h-[2px] ${theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-turquoise/30"}`}></div>
           </div>
 
-          <p className={`text-xl mb-2 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+          <p className={`text-xl mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
             El día de la boda toma muchas fotos
           </p>
-          <p className={`text-xl mb-2 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+          <p className={`text-xl mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
             y déjanos un bonito
           </p>
-          <p className={`text-xl mb-2 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+          <p className={`text-xl mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
             y divertido recuerdo
           </p>
-          <p className={`text-xl mb-2 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+          <p className={`text-xl mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
             haciendo clic en el icono
           </p>
-          <p className={`text-xl mb-6 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>
+          <p className={`text-xl mb-6 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
             de la cámara de fotos
           </p>
 
           <div className="flex justify-center mb-4">
-            <div className={`w-32 h-[2px] ${theme === "warm" ? "bg-primary/30" : "bg-wedding-turquoise/30"}`}></div>
+            <div className={`w-32 h-[2px] ${theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-turquoise/30"}`}></div>
           </div>
         </motion.div>
 
@@ -81,13 +88,13 @@ export default function PhotosSection() {
             <div
               className={`w-24 h-24 rounded-full flex items-center justify-center ${
                 theme === "warm"
-                  ? "bg-white/50 backdrop-blur-sm border border-primary/30"
+                  ? "bg-white/50 backdrop-blur-sm border border-[#8a6d46]/30"
                   : "bg-wedding-skyblue/50 border border-wedding-navy/30"
               }`}
             >
-              <Camera className={`w-12 h-12 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`} />
+              <Camera className={`w-12 h-12 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`} />
             </div>
-            <p className={`text-center mt-2 ${theme === "warm" ? "text-primary" : "text-wedding-navy"}`}>(clic)</p>
+            <p className={`text-center mt-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}> (clic)</p>
           </a>
         </motion.div>
       </div>
