@@ -13,7 +13,7 @@ export default function CoupleSection() {
   return (
     <section
       ref={sectionRef}
-      className="h-screen w-full snap-start flex flex-col items-center justify-center relative bg-[#f8f5f0] px-4 md:px-8 py-16"
+      className="h-screen w-full snap-start flex flex-col items-center justify-center relative bg-[#f8f5f1] px-4 md:px-8 py-16"
     >
       <div className="max-w-6xl mx-auto w-full">
         <motion.div
@@ -96,7 +96,7 @@ export default function CoupleSection() {
                 />
               </div>
             </div>
-            <h3 className="text-2xl font-serif text-[#2c3e50] mb-2">Juan Rodríguez</h3>
+            <h3 className="text-2xl font-serif text-[#2c3e50] mb-2">Jhon Rodríguez</h3>
             <div className="flex items-center text-[#2c3e50]/70 mb-4">
               <MapPin className="h-4 w-4 mr-1" />
               <span>Barcelona, España</span>

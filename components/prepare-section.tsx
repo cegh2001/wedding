@@ -4,7 +4,6 @@ import { useRef } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import Image from "next/image"
-import DecorativeElement from "./decorative-element"
 import { useTheme } from "@/contexts/ThemeContext"
 
 export default function PrepareSection() {
@@ -16,7 +15,7 @@ export default function PrepareSection() {
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 transition-colors duration-300
-                  ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
+                  ${theme === "warm" ? "bg-[#f8f5f1]" : "bg-white"}`}
     >
       <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
         <div className="absolute inset-0 w-[200%]">
@@ -28,9 +27,6 @@ export default function PrepareSection() {
           />
         </div>
       </div>
-
-      <DecorativeElement type="compass" position="top-8 right-8" delay={0.5} />
-      <DecorativeElement type="heart" position="bottom-8 left-8" delay={0.7} />
 
       <div className="max-w-4xl mx-auto w-full relative z-10 text-center px-4 md:px-0">
         <motion.div

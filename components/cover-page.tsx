@@ -1,15 +1,21 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { MousePointerClick } from "lucide-react"
-import { useTheme } from "@/contexts/ThemeContext"
+import { motion } from "framer-motion";
+import { MousePointerClick } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface CoverPageProps {
-  onEnter: () => void
+  onEnter: () => void;
+  startAudio: () => void;
 }
 
-export default function CoverPage({ onEnter }: CoverPageProps) {
-  const { theme } = useTheme()
+export default function CoverPage({ onEnter, startAudio }: CoverPageProps) {
+  const { theme } = useTheme();
+
+  const handleEnter = () => {
+    startAudio();
+    onEnter();
+  };
 
   return (
     <motion.div
@@ -17,10 +23,11 @@ export default function CoverPage({ onEnter }: CoverPageProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
       className={`fixed inset-0 flex flex-col items-center justify-center z-40 cursor-pointer ${
-        theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"
+        theme === "warm" ? "bg-[#f8f5f1]" : "bg-white"
       }`}
-      onClick={onEnter}
+      onClick={handleEnter}
     >
+      {/* El audio se mueve al componente padre */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -47,15 +54,20 @@ export default function CoverPage({ onEnter }: CoverPageProps) {
             }}
           >
             <MousePointerClick
-              className={`w-8 h-8 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-turquoise"}`}
+              className={`w-8 h-8 ${
+                theme === "warm" ? "text-[#8a6d46]" : "text-wedding-turquoise"
+              }`}
             />
           </motion.div>
-          <p className={`text-sm md:text-base ${theme === "warm" ? "text-[#8a6d46]/80" : "text-wedding-navy/80"}`}>
+          <p
+            className={`text-sm md:text-base ${
+              theme === "warm" ? "text-[#8a6d46]/80" : "text-wedding-navy/80"
+            }`}
+          >
             Haz clic y desliza para saber más
           </p>
         </div>
       </motion.div>
     </motion.div>
-  )
+  );
 }
-

@@ -9,7 +9,7 @@ export default function Loading() {
   return (
     <div
       className={`fixed inset-0 flex items-center justify-center z-50 ${
-        theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"
+        theme === "warm" ? "bg-[#f8f5f1]" : "bg-white"
       }`}
     >
       <motion.div

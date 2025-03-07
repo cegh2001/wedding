@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import HeroSection from "@/components/hero-section"
 import PrepareSection from "@/components/prepare-section"
@@ -21,6 +21,7 @@ import ThemeToggle from "@/components/ThemeToggle"
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const [showCover, setShowCover] = useState(true)
+  const audioRef = useRef<HTMLAudioElement>(null)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -28,6 +29,23 @@ export default function Home() {
     }, 2000)
 
     return () => clearTimeout(timer)
+  }, [])
+
+  // Función para iniciar la reproducción de audio
+  const startAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5 // Ajusta el volumen si es necesario
+      audioRef.current.play().catch(error => {
+        console.error("Error al reproducir audio:", error)
+      })
+    }
+  }
+
+  // Precarga el audio cuando se monta el componente
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.load()
+    }
   }, [])
 
   const handleEnterSite = () => {
@@ -40,10 +58,13 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-background overflow-hidden transition-colors duration-300">
+      {/* Elemento de audio que permanecerá montado durante toda la navegación */}
+      <audio ref={audioRef} src="/Multiverso.mp3" preload="auto" loop />
+      
       <ThemeToggle />
       <AnimatePresence mode="wait">
         {showCover ? (
-          <CoverPage key="cover" onEnter={handleEnterSite} />
+          <CoverPage key="cover" onEnter={handleEnterSite} startAudio={startAudio} />
         ) : (
           <motion.div
             key="content"
@@ -72,4 +93,3 @@ export default function Home() {
     </main>
   )
 }
-
