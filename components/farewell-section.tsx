@@ -93,7 +93,7 @@ export default function FarewellSection() {
             </div>
 
             {/* Main content */}
-            <div className="py-8 space-y-6">
+            <div className="space-y-6">
               {/* Sección de Código de Vestimenta */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
