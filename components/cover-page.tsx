@@ -13,7 +13,9 @@ export default function CoverPage({ onEnter, startAudio }: CoverPageProps) {
   const { theme } = useTheme();
 
   const handleEnter = () => {
+    // Primero el audio y luego las acciones de navegación
     startAudio();
+    // Ahora llamamos a onEnter para quitar la portada
     onEnter();
   };
 

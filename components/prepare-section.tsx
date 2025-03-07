@@ -58,7 +58,9 @@ export default function PrepareSection() {
           className="mb-8 md:mb-12"
         >
           <p
-            className={`text-xl md:text-3xl italic ${theme === "warm" ? "text-[#8a6d46]/80" : "text-wedding-turquoise"}`}
+            className={`text-xl md:text-3xl italic ${
+              theme === "warm" ? "text-[#8a6d46]/80" : "text-wedding-turquoise"
+            }`}
             style={{ transform: "rotate(-2deg)" }}
           >
             comenzaremos un nuevo viaje
@@ -76,14 +78,12 @@ export default function PrepareSection() {
               theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
             }`}
           >
-            prepara tus maletas
-            <br />y acompáñanos
-            <br />
-            en este viaje
+            ¡Prepara tus maletas
+            <br />y acompáñanos!
           </p>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
