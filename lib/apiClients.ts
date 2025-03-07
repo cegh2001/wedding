@@ -1,7 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 
-
-
 const API_URL = process.env.URL || "http://localhost:8000/api";
 
 const axiosInstance = axios.create({
@@ -11,11 +9,17 @@ const axiosInstance = axios.create({
   },
 });
 
-
-
 export const apiClient = {
   get: <T>(url: string, config?: AxiosRequestConfig) =>
-    axiosInstance.get<T>(url, config).then((response) => response.data),
+    axiosInstance
+      .get<T>(url, {
+        ...config,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+      .then((response) => response.data),
 
   post: <T>(url: string, data?: any, config?: AxiosRequestConfig) =>
     axiosInstance.post<T>(url, data, config).then((response) => response.data),

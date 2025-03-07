@@ -1,6 +1,6 @@
 import { Smile } from "lucide-react";
 import { AttendInterface } from "./StandarAttend";
-import { Button } from "@/components/button";
+import { Button } from "@/components/ui/button";
 
 export const YesAttend = ({ reset, setOpen }: AttendInterface) => {
   return (

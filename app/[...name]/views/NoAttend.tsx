@@ -1,6 +1,6 @@
 import { Check, Frown } from "lucide-react";
 import { AttendInterface } from "./StandarAttend";
-import { Button } from "@/components/button";
+import { Button } from "@/components/ui/button";
 
 export const NoAttend = ({ reset, setOpen }: AttendInterface) => {
   return (

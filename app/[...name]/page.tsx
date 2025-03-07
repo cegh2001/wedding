@@ -51,7 +51,7 @@ export default function Home() {
       <ThemeToggle />
       <AnimatePresence mode="wait">
         {showCover ? (
-          <CoverPage key="cover" onEnter={handleEnterSite} />
+          <CoverPage key="cover" onEnter={handleEnterSite} startAudio={() => { /* Add your startAudio logic here */ }} />
         ) : (
           <motion.div
             key="content"
