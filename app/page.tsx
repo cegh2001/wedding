@@ -19,9 +19,10 @@ import FarewellSection from "@/components/farewell-section"
 import ThemeToggle from "@/components/ThemeToggle"
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [showCover, setShowCover] = useState(true)
-  const audioRef = useRef<HTMLAudioElement>(null)
+  const [isLoading, setIsLoading] = useState(true);
+  const [showCover, setShowCover] = useState(true);
+  const [enableSnap, setEnableSnap] = useState(true); // Nuevo estado
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -49,8 +50,16 @@ export default function Home() {
   }, [])
 
   const handleEnterSite = () => {
-    setShowCover(false)
-  }
+    // Desactivar snap temporalmente
+    setEnableSnap(false);
+    setShowCover(false);
+
+    // Reactivar snap después de que termine la animación
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      setEnableSnap(true);
+    }, 1000);
+  };
 
   if (isLoading) {
     return <Loading />
@@ -58,13 +67,16 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-background overflow-hidden transition-colors duration-300">
-      {/* Elemento de audio que permanecerá montado durante toda la navegación */}
       <audio ref={audioRef} src="/Multiverso.mp3" preload="auto" loop />
-      
+
       <ThemeToggle />
       <AnimatePresence mode="wait">
         {showCover ? (
-          <CoverPage key="cover" onEnter={handleEnterSite} startAudio={startAudio} />
+          <CoverPage
+            key="cover"
+            onEnter={handleEnterSite}
+            startAudio={startAudio}
+          />
         ) : (
           <motion.div
             key="content"
@@ -72,10 +84,18 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="w-full h-full"
+            onAnimationComplete={() => {
+              // Asegurarse de estar en la parte superior cuando termine la animación
+              window.scrollTo(0, 0);
+            }}
           >
             <TravelElements />
             <Navigation />
-            <div className="snap-y snap-mandatory h-screen overflow-y-scroll">
+            <div
+              className={`${
+                enableSnap ? "snap-y snap-mandatory" : ""
+              } h-screen overflow-y-scroll`}
+            >
               <HeroSection />
               <PrepareSection />
               <PassportSection />
@@ -91,5 +111,5 @@ export default function Home() {
         )}
       </AnimatePresence>
     </main>
-  )
+  );
 }
