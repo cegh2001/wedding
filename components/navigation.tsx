@@ -86,6 +86,7 @@ export default function Navigation() {
                   "Regalo",
                   "Cuenta Regresiva",
                   "Fotos",
+                  "Despedida",
                 ].map((item, index) => (
                   <li key={item}>
                     <button
@@ -104,4 +105,3 @@ export default function Navigation() {
     </>
   )
 }
-

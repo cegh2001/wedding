@@ -31,7 +31,7 @@ export default function RsvpSection() {
   return (
     <section
       ref={sectionRef}
-      className="h-screen w-full snap-start flex flex-col items-center justify-center relative bg-[#f8f5f0] px-4 md:px-8 py-16"
+      className="h-screen w-full snap-start flex flex-col items-center justify-center relative bg-[#f8f5f1] px-4 md:px-8 py-16"
     >
       <div className="absolute top-0 left-0 w-40 h-40 opacity-10">
         <img
@@ -150,8 +150,8 @@ export default function RsvpSection() {
         >
           <p className="text-[#2c3e50]/80">
             Para cualquier consulta, contacta con nosotros en{" "}
-            <a href="mailto:boda@mariajuan.com" className="underline">
-              boda@mariajuan.com
+            <a href="mailto:boda@mariaJhon.com" className="underline">
+              boda@mariaJhon.com
             </a>
           </p>
         </motion.div>

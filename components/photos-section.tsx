@@ -1,34 +1,34 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef } from "react"  // Ya no necesitamos useEffect
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { Camera } from "lucide-react"
-import Image from "next/image"
 import DecorativeElement from "./decorative-element"
 import { useTheme } from "@/contexts/ThemeContext"
+// Importar el nuevo hook
+import { useAnimatedBackground } from "@/hooks/useParticleBackground"
 
 export default function PhotosSection() {
   const sectionRef = useRef(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 })
   const { theme } = useTheme()
+  
+  // Usar el hook de animación de fondo
+  useAnimatedBackground(canvasRef, theme, { count: 70 });
 
   return (
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
-                  ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
+                  ${theme === "warm" ? "bg-[#f8f5f1]" : "bg-white"}`}
     >
-      <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
-        <div className="absolute inset-0 w-[200%]">
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/38725a18-fb60-4b97-bfd7-72c257d5baa2-MbtlZunOBKD7CcdJCF2OCMveEkJkZf.png"
-            alt="Background gradient"
-            fill
-            className="object-cover animate-slide"
-          />
-        </div>
-      </div>
+      {/* Fondo animado */}
+      <canvas
+        ref={canvasRef}
+        className="absolute top-0 left-0 w-full h-full pointer-events-none"
+      />
 
       <DecorativeElement type="compass" position="top-8 left-8" delay={0.5} />
       <DecorativeElement type="heart" position="bottom-8 right-8" delay={0.7} />
@@ -101,4 +101,3 @@ export default function PhotosSection() {
     </section>
   )
 }
-

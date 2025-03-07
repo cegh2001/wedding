@@ -3,7 +3,7 @@
 import { useRef } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { Compass, LuggageIcon as Suitcase, Heart } from "lucide-react"
+import { Compass, LuggageIcon as Suitcase, Heart, Slash } from "lucide-react"
 import Image from "next/image"
 import { useTheme } from "@/contexts/ThemeContext"
 
@@ -16,11 +16,27 @@ export default function FarewellSection({invite}: Props) {
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 })
   const { theme } = useTheme()
 
+  // Colores prohibidos con sus nombres
+  const prohibidosColores = [
+    { color: "#7b1fa2", nombre: "Morado" },  // morado fuerte
+    { color: "#556B2F", nombre: "Aceituna" }, // aceituna
+    { color: "#8B0000", nombre: "Vinotinto" }, // vinotinto
+  ]
+
+  // Colores recomendados (pasteles)
+  const recomendadosColores = [
+    { color: "#F8BBD0", nombre: "Rosa" },
+    { color: "#B2EBF2", nombre: "Celeste" },
+    { color: "#DCEDC8", nombre: "Verde" },
+    { color: "#FFF9C4", nombre: "Amarillo" },
+    { color: "#E1BEE7", nombre: "Lavanda" },
+  ]
+
   return (
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
-                  ${theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"}`}
+                  ${theme === "warm" ? "bg-[#f8f5f1]" : "bg-white"}`}
     >
       <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
         <div className="absolute inset-0 w-[200%]">
@@ -76,12 +92,13 @@ export default function FarewellSection({invite}: Props) {
               >
                 <span>TYPE: BODA</span>
                 <span>CODE: BARCELONA</span>
-                <span>PASAPORTE Nº 15062025</span>
+                <span>PASSPORT Nº 15062025</span>
               </div>
             </div>
 
             {/* Main content */}
-            <div className="py-8 space-y-6">
+            <div className="space-y-6">
+              {/* Sección de Código de Vestimenta */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={
@@ -114,17 +131,20 @@ export default function FarewellSection({invite}: Props) {
                 </div>
               </motion.div>
 
+              {/* Nuevo mensaje emotivo */}
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className={`text-xl md:text-2xl font-serif italic ${
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className={`text-base md:text-lg font-serif italic mx-auto max-w-2xl ${
                   theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
                 }`}
               >
-                El único equipaje que necesitas
+                Hay momentos en la vida que son muy especiales por sí solos,
                 <br />
-                son las ganas de pasarlo bien
+                pero al compartirlos con personas tan especiales como tú,
+                <br />
+                se convierte en momentos imposible de olvidar
               </motion.p>
 
               <motion.div
@@ -145,7 +165,7 @@ export default function FarewellSection({invite}: Props) {
                     theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
                   }`}
                 >
-                  ¡Te esperamos!
+                  ¡Te esperamos en nuestra boda!
                 </p>
                 <Heart
                   className={`w-5 h-5 ${
