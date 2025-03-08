@@ -70,7 +70,7 @@ export default function FarewellSection() {
                     theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
                   }`}
                 >
-                  María & Jhon
+                  María & Jhon Veliz
                 </h2>
                 <div
                   className={`h-[1px] flex-1 ${
@@ -87,7 +87,7 @@ export default function FarewellSection() {
                 } text-sm`}
               >
                 <span>TYPE: BODA</span>
-                <span>CODE: BARCELONA</span>
+                <span>CODE: GALIPÁN</span>
                 <span>PASSPORT Nº 15062025</span>
               </div>
             </div>
