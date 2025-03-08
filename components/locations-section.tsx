@@ -22,11 +22,11 @@ export default function LocationsSection() {
     },
     destino: {
       icon: <Home className="w-12 h-12" />,
-      name: "Can Bonastre Wine Resort",
-      address: ["Carretera B-224 km 13.2,", "08738 Masquefa, Barcelona"],
-      mapsUrl: "https://maps.google.com",
+      name: "Restaurante Galipán Grill",
+      address: ["San Antonio de Galipán,", "1164 Macuto, La Guaira"],
+      mapsUrl: "https://maps.app.goo.gl/yzTSFVa9uGjtW8sBA",
     },
-  }
+  };
 
   return (
     <section

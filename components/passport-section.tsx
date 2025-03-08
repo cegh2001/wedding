@@ -90,9 +90,9 @@ export default function PassportSection() {
             {[
               { label: "Fecha", value: "24 de Mayo, 2025" },
               { label: "Hora", value: "18:00 H" },
-              { label: "Destino", value: "Barcelona" },
+              { label: "Destino", value: "Galipán " },
               { label: "Ceremonia", value: "Santa María Reina de Pedralbes" },
-              { label: "Banquete", value: "Can Bonastre Wine Resort" },
+              { label: "Banquete", value: "Restaurante Galipán Grill" },
             ].map((item, index) => (
               <div key={index} className="flex">
                 <span
@@ -121,7 +121,7 @@ export default function PassportSection() {
                 theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
               }`}
             >
-              MARÍA & JHON
+              María & Jhon Veliz
             </h3>
           </div>
 

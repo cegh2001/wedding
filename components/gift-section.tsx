@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo } from "react"; // Añadir useMemo
+import { useRef, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { Copy, Check, Gift } from "lucide-react";
@@ -14,16 +14,24 @@ export default function GiftSection() {
   const [copied, setCopied] = useState(false);
   const { theme } = useTheme();
 
+  // Datos bancarios
+  const bankData = {
+    banco: "Mercantil, C.A, Banco Universal",
+    rif: "J-00002961-0",
+    nombre: "Jhon Veliz",
+    tipoCuenta: "Cuenta de Ahorro",
+    numeroCuenta: "01050662010662116836",
+    cedula: "V-24.459.025"
+  };
+
   // Memoizar la configuración para evitar crear un nuevo objeto en cada renderización
   const particleConfig = useMemo(() => ({ count: 70 }), []);
 
   // Usar el hook de animación de fondo con configuración memoizada
   useAnimatedBackground(canvasRef, theme, particleConfig);
 
-  const accountNumber = "ES 1111 2222 3333 4444 5555 6666";
-
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(accountNumber);
+    navigator.clipboard.writeText(bankData.numeroCuenta);
     setCopied(true);
 
     setTimeout(() => {
@@ -76,25 +84,12 @@ export default function GiftSection() {
           </h2>
 
           <p
-            className={`text-xl mb-2 ${
-              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-            }`}
-          >
-            Lo más importante es vuestra presencia,
-          </p>
-          <p
-            className={`text-xl mb-2 ${
-              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-            }`}
-          >
-            pero si deseáis hacernos un regalo,
-          </p>
-          <p
             className={`text-xl mb-6 ${
               theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
             }`}
           >
-            aquí dejamos nuestro número de cuenta
+            Lo más importante es vuestra presencia, pero si deseáis hacernos un
+            regalo, aquí dejamos nuestros datos bancarios
           </p>
         </motion.div>
 
@@ -102,19 +97,97 @@ export default function GiftSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className={`rounded-lg border p-4 mb-8 ${
-            theme === "warm"
-              ? "bg-white/50 backdrop-blur-sm border-[#8a6d46]/30"
-              : "bg-wedding-skyblue/30 border-wedding-navy/30"
-          }`}
+          className="p-6 mb-8"
         >
-          <p
-            className={`text-center text-xl font-medium ${
-              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 gap-y-4 p-6 border rounded-lg ${
+              theme === "warm"
+                ? "bg-white/50 backdrop-blur-sm border-[#8a6d46]/30"
+                : "bg-wedding-skyblue/30 border-wedding-navy/30"
             }`}
           >
-            {accountNumber}
-          </p>
+            <div>
+              <p
+                className={`text-sm uppercase font-medium mb-1 opacity-70 ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                }`}
+              >
+                Banco
+              </p>
+              <p
+                className={`font-medium ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                }`}
+              >
+                {bankData.banco}
+              </p>
+              <p
+                className={`text-sm ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                }`}
+              >
+                RIF: {bankData.rif}
+              </p>
+            </div>
+
+            <div className ="text-end">
+              <p
+                className={`text-sm uppercase font-medium mb-1 opacity-70 ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                }`}
+              >
+                Beneficiario
+              </p>
+              <p
+                className={`font-medium ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                }`}
+              >
+                {bankData.nombre}
+              </p>
+              <p
+                className={`text-sm ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                }`}
+              >
+                C.I.: {bankData.cedula}
+              </p>
+            </div>
+
+            <div>
+              <p
+                className={`text-sm uppercase font-medium mb-1 opacity-70 ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                }`}
+              >
+                Tipo de cuenta
+              </p>
+              <p
+                className={`font-medium ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                }`}
+              >
+                {bankData.tipoCuenta}
+              </p>
+            </div>
+
+            <div className ="text-end">
+              <p
+                className={`text-sm uppercase font-medium mb-1 opacity-70 ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                }`}
+              >
+                Número de cuenta
+              </p>
+              <p
+                className={`font-medium ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                }`}
+              >
+                {bankData.numeroCuenta}
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         <motion.div
@@ -136,12 +209,12 @@ export default function GiftSection() {
             {copied ? (
               <>
                 <Check className="w-4 h-4 mr-2" />
-                Copiado
+                Datos copiados
               </>
             ) : (
               <>
                 <Copy className="w-4 h-4 mr-2" />
-                Copiar número de cuenta
+                Copiar datos
               </>
             )}
           </Button>

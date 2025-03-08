@@ -91,7 +91,7 @@ export default function FarewellSection({invite}: Props) {
                 } text-sm`}
               >
                 <span>TYPE: BODA</span>
-                <span>CODE: BARCELONA</span>
+                <span>CODE: GALIPÁN</span>
                 <span>PASSPORT Nº 15062025</span>
               </div>
             </div>
