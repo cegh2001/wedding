@@ -45,7 +45,7 @@ const schema = yup.object().shape({
 const theme = "warm";
 
 export default function AttendanceSection({ name, url }: Props) {
-  const { findByUrl, mutate } = useGetWeddingServices({ name });
+  const { findByUrl, mutate } = useGetWeddingServices({ url });
   const wedding = findByUrl(url);
   const attend = wedding ? wedding.attend : null;
   const sectionRef = useRef(null);
