@@ -25,7 +25,7 @@ export default function HeroSection({invite}:Props) {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="z-10 text-center px-4"
+        className="z-10 text-center px-4 mt-16"
       >
         <div className="mb-6">
           <motion.div
@@ -37,14 +37,18 @@ export default function HeroSection({invite}:Props) {
             <Plane className="h-12 w-12 text-white" />
           </motion.div>
         </div>
-
+        
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-5xl md:text-7xl font-serif text-white mb-4 capitalize"
         >
-          María & Jhon Veliz
+          María Gabriela 
+          <br />
+          & 
+          <br />
+          Jhon Alexander
         </motion.h1>
 
         <motion.div

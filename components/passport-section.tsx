@@ -117,11 +117,11 @@ export default function PassportSection() {
 
           <div className="text-center mt-6 md:mt-8">
             <h3
-              className={`text-xl md:text-2xl font-serif tracking-wide ${
+              className={`text-xl md:text-xl font-serif tracking-wide ${
                 theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
               }`}
             >
-              María & Jhon Veliz
+              María Gabriela & Jhon Alexander
             </h3>
           </div>
 
