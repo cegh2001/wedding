@@ -1,10 +1,11 @@
 "use client";
 
-import type React from "react";
-
-import { useRef, useState, useMemo } from "react"; // Añadir useMemo
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -14,52 +15,92 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Check, StampIcon as Passport } from "lucide-react";
 import DecorativeElement from "./decorative-element";
-import { useTheme } from "@/contexts/ThemeContext";
-// Importar el nuevo hook
-import { useAnimatedBackground } from "@/hooks/useParticleBackground";
+import {
+  useGetWeddingServices,
+  usePostWeddingService,
+} from "@/app/[...name]/services/weddingServices";
+import { StandarAttend } from "@/app/[...name]/views/StandarAttend";
+import { YesAttend } from "@/app/[...name]/views/YesAttend";
+import { NoAttend } from "@/app/[...name]/views/NoAttend";
 
-export default function AttendanceSection() {
+interface Props {
+  url: string;
+  name: string;
+}
+
+export interface BodyPostWedding {
+  url: string;
+  name: string;
+  attend: boolean;
+}
+
+// Esquema de validación para el formulario
+const schema = yup.object().shape({
+  attendance: yup.string().required("Debes seleccionar una opción"),
+});
+
+// Definir un tema de ejemplo. Puedes obtenerlo desde props o contexto.
+const theme = "warm";
+
+export default function AttendanceSection({ name, url }: Props) {
+  const { findByUrl, mutate } = useGetWeddingServices({ url });
+  const wedding = findByUrl(url);
+  const attend = wedding ? wedding.attend : null;
   const sectionRef = useRef(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const { theme } = useTheme();
+  const {
+    postWedding,
+    isLoading: isLoadingPost,
+    setIsLoadingPost,
+  } = usePostWeddingService();
 
-  // Memoizar la configuración para evitar recrear el objeto en cada renderizado
-  const particleConfig = useMemo(() => ({ count: 70 }), []);
+  // Estado para controlar la apertura del Dialog
+  const [open, setOpen] = useState(false);
 
-  // Usar el hook de animación de fondo con configuración memoizada
-  useAnimatedBackground(canvasRef, theme, particleConfig);
+  const {
+    handleSubmit,
+    formState: { isSubmitting, errors },
+    reset,
+    setValue,
+    register,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
+  // Selecciona la vista actual según la asistencia registrada
+  const ViewAttend =
+    attend === null ? (
+      <StandarAttend reset={reset} setOpen={setOpen} />
+    ) : attend ? (
+      <YesAttend reset={reset} setOpen={setOpen} />
+    ) : (
+      <NoAttend reset={reset} setOpen={setOpen} />
+    );
 
-    setTimeout(() => {
-      setDialogOpen(false);
-      setTimeout(() => {
-        setSubmitted(false);
-      }, 300);
-    }, 2000);
+  // Función de envío del formulario
+  const onSubmit = async ({ attendance }: any) => {
+    setIsLoadingPost(true);
+    const body: BodyPostWedding = {
+      url,
+      name,
+      attend: attendance === "yes",
+    };
+    postWedding(body).then(() => {
+      setOpen(false);
+      setIsLoadingPost(false);
+      mutate();
+    });
   };
 
   return (
     <section
       ref={sectionRef}
-      className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
-                  ${theme === "warm" ? "bg-[#f8f5f1]" : "bg-white"}`}
+      className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300 ${
+        theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"
+      }`}
     >
       {/* Fondo animado */}
       <canvas
@@ -102,62 +143,11 @@ export default function AttendanceSection() {
               : "border border-wedding-navy/20"
           }`}
         >
-          <div className="text-center mb-6">
-            <div
-              className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4 ${
-                theme === "warm" ? "bg-[#8a6d46]/10" : "bg-wedding-skyblue/30"
-              }`}
-            >
-              <Passport
-                className={`w-10 h-10 ${
-                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                }`}
-              />
-            </div>
-            <h3
-              className={`text-2xl font-serif mb-2 ${
-                theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-              }`}
-            >
-              ¿Listo para embarcar?
-            </h3>
-            <p
-              className={
-                theme === "warm"
-                  ? "text-[#8a6d46]/80"
-                  : "text-wedding-turquoise"
-              }
-            >
-              Tu presencia hará nuestro viaje aún más especial
-            </p>
-          </div>
-
-          <div className="space-y-4 mb-6">
-            <div className="flex items-center justify-center">
-              <span
-                className={
-                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                }
-              >
-                Confirma tu asistencia y la de tus acompañantes
-              </span>
-            </div>
-          </div>
-
-          <Button
-            onClick={() => setDialogOpen(true)}
-            className={`w-full ${
-              theme === "warm"
-                ? "bg-[#8a6d46] hover:bg-[#8a6d46]/90 text-white"
-                : "bg-wedding-navy hover:bg-wedding-navy/90 text-wedding-skyblue"
-            }`}
-          >
-            Reservar mi lugar
-          </Button>
+          {ViewAttend}
         </motion.div>
       </div>
 
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
           className={`bg-white border-2 max-w-md ${
             theme === "warm" ? "border-[#8a6d46]/30" : "border-wedding-navy/30"
@@ -169,7 +159,7 @@ export default function AttendanceSection() {
                 theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
               }`}
             >
-              Reserva tu Asiento
+              Asistirá a la boda
             </DialogTitle>
             <DialogDescription
               className={`text-center ${
@@ -178,178 +168,49 @@ export default function AttendanceSection() {
                   : "text-wedding-turquoise"
               }`}
             >
-              Completa tu tarjeta de embarque para nuestro viaje de amor.
+              Completa el siguiente formulario para confirmar tu asistencia
             </DialogDescription>
           </DialogHeader>
 
-          {submitted ? (
-            <div className="py-6 text-center">
-              <div
-                className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
-                  theme === "warm" ? "bg-[#8a6d46]/10" : "bg-wedding-skyblue/30"
-                }`}
-              >
-                <Check
-                  className={`h-8 w-8 ${
-                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                  }`}
-                />
+          <form onSubmit={handleSubmit(onSubmit)} className="py-4 space-y-4">
+            <Label
+              className={
+                theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+              }
+            >
+              ¿Podrás asistir?
+            </Label>
+            <RadioGroup
+              onValueChange={(value) => setValue("attendance", value)}
+              {...register("attendance")}
+              className="flex space-x-4"
+              defaultValue={
+                attend !== null ? (attend ? "yes" : "no") : undefined
+              }
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="yes" id="attendance-yes" />
+                <Label htmlFor="attendance-yes">Sí, asistiré</Label>
               </div>
-              <h3
-                className={`text-xl font-medium mb-2 ${
-                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                }`}
-              >
-                ¡Reserva Confirmada!
-              </h3>
-              <p
-                className={
-                  theme === "warm"
-                    ? "text-[#8a6d46]/80"
-                    : "text-wedding-turquoise"
-                }
-              >
-                Tu asiento está reservado. ¡Prepárate para despegar hacia
-                nuestra celebración!
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="no" id="attendance-no" />
+                <Label htmlFor="attendance-no">No podré asistir</Label>
+              </div>
+            </RadioGroup>
+            {errors.attendance && (
+              <p className="text-red-500 text-sm">
+                {errors.attendance.message}
               </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="py-4 space-y-4">
-              <div className="space-y-2">
-                <Label
-                  htmlFor="name"
-                  className={
-                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                  }
-                >
-                  Nombre del pasajero
-                </Label>
-                <Input
-                  id="name"
-                  placeholder="Tu nombre completo"
-                  required
-                  className={`border ${
-                    theme === "warm"
-                      ? "border-[#8a6d46]/30 focus-visible:ring-[#8a6d46]/50"
-                      : "border-wedding-navy/30 focus-visible:ring-wedding-turquoise/50"
-                  }`}
-                />
-              </div>
+            )}
 
-              <div className="space-y-2">
-                <Label
-                  className={
-                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                  }
-                >
-                  Confirmación de vuelo
-                </Label>
-                <RadioGroup defaultValue="yes" className="flex space-x-4">
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem
-                      value="yes"
-                      id="yes"
-                      className={
-                        theme === "warm"
-                          ? "text-[#8a6d46] border-[#8a6d46]"
-                          : "text-wedding-navy border-wedding-navy"
-                      }
-                    />
-                    <Label
-                      htmlFor="yes"
-                      className={`cursor-pointer ${
-                        theme === "warm"
-                          ? "text-[#8a6d46]"
-                          : "text-wedding-navy"
-                      }`}
-                    >
-                      Sí, asistiré
-                    </Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem
-                      value="no"
-                      id="no"
-                      className={
-                        theme === "warm"
-                          ? "text-[#8a6d46] border-[#8a6d46]"
-                          : "text-wedding-navy border-wedding-navy"
-                      }
-                    />
-                    <Label
-                      htmlFor="no"
-                      className={`cursor-pointer ${
-                        theme === "warm"
-                          ? "text-[#8a6d46]"
-                          : "text-wedding-navy"
-                      }`}
-                    >
-                      No podré asistir
-                    </Label>
-                  </div>
-                </RadioGroup>
-              </div>
-
-              <div className="space-y-2">
-                <Label
-                  htmlFor="guests"
-                  className={
-                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                  }
-                >
-                  Pasajeros adicionales
-                </Label>
-                <Select defaultValue="0">
-                  <SelectTrigger
-                    className={`border ${
-                      theme === "warm"
-                        ? "border-[#8a6d46]/30 text-[#8a6d46] focus-visible:ring-[#8a6d46]/50"
-                        : "border-wedding-navy/30 text-wedding-navy focus-visible:ring-wedding-turquoise/50"
-                    }`}
-                  >
-                    <SelectValue placeholder="Selecciona" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="0">Solo yo</SelectItem>
-                    <SelectItem value="1">1 acompañante</SelectItem>
-                    <SelectItem value="2">2 acompañantes</SelectItem>
-                    <SelectItem value="3">3 acompañantes</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-2">
-                <Label
-                  htmlFor="dietary"
-                  className={
-                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                  }
-                >
-                  Menú especial
-                </Label>
-                <Input
-                  id="dietary"
-                  placeholder="Alergias o restricciones alimentarias"
-                  className={`border ${
-                    theme === "warm"
-                      ? "border-[#8a6d46]/30 focus-visible:ring-[#8a6d46]/50"
-                      : "border-wedding-navy/30 focus-visible:ring-wedding-turquoise/50"
-                  }`}
-                />
-              </div>
-
-              <Button
-                type="submit"
-                className={`w-full ${
-                  theme === "warm"
-                    ? "bg-[#8a6d46] hover:bg-[#8a6d46]/90 text-white"
-                    : "bg-wedding-navy hover:bg-wedding-navy/90 text-white"
-                }`}
-              >
-                Confirmar Reserva
-              </Button>
-            </form>
-          )}
+            <Button
+              type="submit"
+              disabled={isSubmitting || isLoadingPost}
+              className="w-full"
+            >
+              {isSubmitting || isLoadingPost ? "Enviando..." : "Enviar"}
+            </Button>
+          </form>
         </DialogContent>
       </Dialog>
     </section>

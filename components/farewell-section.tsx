@@ -7,7 +7,11 @@ import { Compass, LuggageIcon as Suitcase, Heart, Slash } from "lucide-react"
 import Image from "next/image"
 import { useTheme } from "@/contexts/ThemeContext"
 
-export default function FarewellSection() {
+interface Props {
+  invite: string
+}
+
+export default function FarewellSection({invite}: Props) {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 })
   const { theme } = useTheme()
@@ -70,7 +74,7 @@ export default function FarewellSection() {
                     theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
                   }`}
                 >
-                  María & Jhon Veliz
+                  {invite}
                 </h2>
                 <div
                   className={`h-[1px] flex-1 ${
@@ -96,102 +100,33 @@ export default function FarewellSection() {
             <div className="space-y-6">
               {/* Sección de Código de Vestimenta */}
               <motion.div
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, scale: 0.8 }}
                 animate={
-                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }
+                  isInView
+                    ? { opacity: 1, scale: 1 }
+                    : { opacity: 0, scale: 0.8 }
                 }
-                transition={{ duration: 0.8, delay: 0.7 }}
-                className={`mx-auto max-w-lg rounded-lg p-5 border ${
-                  theme === "warm"
-                    ? "border-[#8a6d46]/30"
-                    : "border-wedding-navy/30"
-                }`}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="flex justify-center"
               >
-                <div className="text-center mb-4">
-                  <h3
-                    className={`font-serif text-xl ${
-                      theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                    }`}
-                  >
-                    DRESS CODE
-                  </h3>
-                  <div
-                    className={`h-[1px] w-16 mx-auto mt-1 ${
-                      theme === "warm"
-                        ? "bg-[#8a6d46]/50"
-                        : "bg-wedding-navy/50"
-                    }`}
-                  ></div>
-                </div>
-
-                <div className="flex flex-col gap-5">
-                  {/* Colores a evitar */}
-                  <div>
-                    <p
-                      className={`text-sm mb-2 ${
+                <div className="w-24 h-24 relative">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Suitcase
+                      className={`w-12 h-12 ${
                         theme === "warm"
-                          ? "text-[#8a6d46]/90"
-                          : "text-wedding-navy/90"
+                          ? "text-[#8a6d46]"
+                          : "text-wedding-navy"
                       }`}
-                    >
-                      Por favor, evitar estos colores:
-                    </p>
-                    <div className="flex justify-center gap-4">
-                      {prohibidosColores.map((item, index) => (
-                        <div key={index} className="flex flex-col items-center">
-                          <div className="relative">
-                            <div
-                              className="w-8 h-8 rounded-full"
-                              style={{ backgroundColor: item.color }}
-                            ></div>
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <Slash className="w-10 h-10 text-white stroke-[3] drop-shadow-md" />
-                            </div>
-                          </div>
-                          <span
-                            className={`text-xs mt-1 ${
-                              theme === "warm"
-                                ? "text-[#8a6d46]/80"
-                                : "text-wedding-navy/80"
-                            }`}
-                          >
-                            {item.nombre}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                    />
                   </div>
-
-                  {/* Colores recomendados */}
-                  <div>
-                    <p
-                      className={`text-sm mb-2 ${
+                  <div className="absolute inset-0 flex items-center justify-center animate-spin-slow">
+                    <Compass
+                      className={`w-24 h-24 ${
                         theme === "warm"
-                          ? "text-[#8a6d46]/90"
-                          : "text-wedding-navy/90"
+                          ? "text-[#8a6d46]/20"
+                          : "text-wedding-navy/20"
                       }`}
-                    >
-                      Recomendamos colores pasteles como:
-                    </p>
-                    <div className="flex justify-center gap-3">
-                      {recomendadosColores.map((item, index) => (
-                        <div key={index} className="flex flex-col items-center">
-                          <div
-                            className="w-6 h-6 rounded-full border border-gray-200"
-                            style={{ backgroundColor: item.color }}
-                          ></div>
-                          <span
-                            className={`text-[10px] mt-1 ${
-                              theme === "warm"
-                                ? "text-[#8a6d46]/80"
-                                : "text-wedding-navy/80"
-                            }`}
-                          >
-                            {item.nombre}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                    />
                   </div>
                 </div>
               </motion.div>
@@ -217,7 +152,7 @@ export default function FarewellSection() {
                 animate={
                   isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
                 }
-                transition={{ duration: 0.8, delay: 0.9 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
                 className="flex items-center justify-center gap-2"
               >
                 <Heart
@@ -267,3 +202,4 @@ export default function FarewellSection() {
     </section>
   );
 }
+
