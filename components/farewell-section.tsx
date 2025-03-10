@@ -60,7 +60,7 @@ export default function FarewellSection({invite}: Props) {
               : "border border-wedding-navy/20"
           }`}
         >
-          <div className="text-center space-y-8">
+          <div className="text-center">
             {/* Passport-like header */}
             <div className="space-y-4">
               <div className="flex items-center justify-center gap-2">
@@ -100,33 +100,102 @@ export default function FarewellSection({invite}: Props) {
             <div className="space-y-6">
               {/* Sección de Código de Vestimenta */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={
-                  isInView
-                    ? { opacity: 1, scale: 1 }
-                    : { opacity: 0, scale: 0.8 }
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }
                 }
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex justify-center"
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className={`mx-auto max-w-lg rounded-lg mt-6 p-5 border ${
+                  theme === "warm"
+                    ? "border-[#8a6d46]/30"
+                    : "border-wedding-navy/30"
+                }`}
               >
-                <div className="w-24 h-24 relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Suitcase
-                      className={`w-12 h-12 ${
+                <div className="text-center mb-4">
+                  <h3
+                    className={`font-serif text-xl ${
+                      theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                    }`}
+                  >
+                    DRESS CODE
+                  </h3>
+                  <div
+                    className={`h-[1px] w-16 mx-auto mt-1 ${
+                      theme === "warm"
+                        ? "bg-[#8a6d46]/50"
+                        : "bg-wedding-navy/50"
+                    }`}
+                  ></div>
+                </div>
+
+                <div className="flex flex-col gap-5">
+                  {/* Colores a evitar */}
+                  <div>
+                    <p
+                      className={`text-sm mb-2 ${
                         theme === "warm"
-                          ? "text-[#8a6d46]"
-                          : "text-wedding-navy"
+                          ? "text-[#8a6d46]/90"
+                          : "text-wedding-navy/90"
                       }`}
-                    />
+                    >
+                      Por favor, evitar estos colores:
+                    </p>
+                    <div className="flex justify-center gap-4">
+                      {prohibidosColores.map((item, index) => (
+                        <div key={index} className="flex flex-col items-center">
+                          <div className="relative">
+                            <div
+                              className="w-8 h-8 rounded-full"
+                              style={{ backgroundColor: item.color }}
+                            ></div>
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <Slash className="w-10 h-10 text-white stroke-[3] drop-shadow-md" />
+                            </div>
+                          </div>
+                          <span
+                            className={`text-xs mt-1 ${
+                              theme === "warm"
+                                ? "text-[#8a6d46]/80"
+                                : "text-wedding-navy/80"
+                            }`}
+                          >
+                            {item.nombre}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className="absolute inset-0 flex items-center justify-center animate-spin-slow">
-                    <Compass
-                      className={`w-24 h-24 ${
+
+                  {/* Colores recomendados */}
+                  <div>
+                    <p
+                      className={`text-sm mb-2 ${
                         theme === "warm"
-                          ? "text-[#8a6d46]/20"
-                          : "text-wedding-navy/20"
+                          ? "text-[#8a6d46]/90"
+                          : "text-wedding-navy/90"
                       }`}
-                    />
+                    >
+                      Recomendamos colores pasteles como:
+                    </p>
+                    <div className="flex justify-center gap-3">
+                      {recomendadosColores.map((item, index) => (
+                        <div key={index} className="flex flex-col items-center">
+                          <div
+                            className="w-6 h-6 rounded-full border border-gray-200"
+                            style={{ backgroundColor: item.color }}
+                          ></div>
+                          <span
+                            className={`text-[10px] mt-1 ${
+                              theme === "warm"
+                                ? "text-[#8a6d46]/80"
+                                : "text-wedding-navy/80"
+                            }`}
+                          >
+                            {item.nombre}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
