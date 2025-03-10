@@ -44,7 +44,7 @@ export default function HeroSection({invite}:Props) {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-5xl md:text-7xl font-serif text-white mb-4 capitalize"
         >
-          {invite}
+          María & Jhon Veliz
         </motion.h1>
 
         <motion.div

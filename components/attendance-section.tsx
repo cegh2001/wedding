@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { motion, useInView } from "framer-motion";
-import Image from "next/image";
+import { useAnimatedBackground } from "@/hooks/useParticleBackground";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -24,6 +24,7 @@ import {
 import { StandarAttend } from "@/app/[...name]/views/StandarAttend";
 import { YesAttend } from "@/app/[...name]/views/YesAttend";
 import { NoAttend } from "@/app/[...name]/views/NoAttend";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface Props {
   url: string;
@@ -41,11 +42,9 @@ const schema = yup.object().shape({
   attendance: yup.string().required("Debes seleccionar una opción"),
 });
 
-// Definir un tema de ejemplo. Puedes obtenerlo desde props o contexto.
-const theme = "warm";
-
 export default function AttendanceSection({ name, url }: Props) {
   const { findByUrl, mutate } = useGetWeddingServices({ url });
+  const { theme } = useTheme();
   const wedding = findByUrl(url);
   const attend = wedding ? wedding.attend : null;
   const sectionRef = useRef(null);
@@ -59,6 +58,12 @@ export default function AttendanceSection({ name, url }: Props) {
 
   // Estado para controlar la apertura del Dialog
   const [open, setOpen] = useState(false);
+
+  // Memoizar la configuración para evitar crear un nuevo objeto en cada renderización
+  const particleConfig = useMemo(() => ({ count: 70 }), []);
+  
+  // Usar el hook de animación de fondo con configuración memoizada
+  useAnimatedBackground(canvasRef, theme, particleConfig);
 
   const {
     handleSubmit,
@@ -149,8 +154,10 @@ export default function AttendanceSection({ name, url }: Props) {
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
-          className={`bg-white border-2 max-w-md ${
-            theme === "warm" ? "border-[#8a6d46]/30" : "border-wedding-navy/30"
+          className={`border-2 max-w-md ${
+            theme === "warm"
+              ? "bg-[#f8f5f1] border-[#8a6d46]/30"
+              : "bg-white border-wedding-navy/30"
           }`}
         >
           <DialogHeader>

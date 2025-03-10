@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 
-const API_URL = process.env.URL || "http://localhost:8000/api";
+const API_URL = process.env.URL || "https://wedding.gonavi.dev/api";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,

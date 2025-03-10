@@ -70,7 +70,7 @@ export default function FarewellSection({invite}: Props) {
                   }`}
                 ></div>
                 <h2
-                  className={`text-4xl md:text-5xl font-serif ${
+                  className={`text-4xl md:text-5xl font-serif capitalize ${
                     theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
                   }`}
                 >
