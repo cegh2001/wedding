@@ -13,12 +13,12 @@ export default function ItinerarySection() {
   const { theme } = useTheme()
 
   const timelineItems = [
-    { time: "18:00 h", icon: <Church className="w-6 h-6" />, event: "Ceremonia" },
-    { time: "19:00 h", icon: <Tent className="w-6 h-6" />, event: "Recepción" },
-    { time: "20:00 h", icon: <Wine className="w-6 h-6" />, event: "Cóctel" },
-    { time: "22:00 h", icon: <Utensils className="w-6 h-6" />, event: "Cena" },
-    { time: "00:00 h", icon: <Music className="w-6 h-6" />, event: "Baile" },
-    { time: "06:00 h", icon: <Car className="w-6 h-6" />, event: "Fin de la fiesta" },
+    { time: "4:00 pm", icon: <Car className="w-6 h-6" />, event: "Translado" },
+    { time: "5:30 pm", icon: <Church className="w-6 h-6" />, event: "Ceremonia" },
+    { time: "7:00 pm", icon: <Wine className="w-6 h-6" />, event: "Brindis" },
+    { time: "7:30 pm", icon: <Utensils className="w-6 h-6" />, event: "Cena" },
+    { time: "8:30 pm", icon: <Music className="w-6 h-6" />, event: "Baile" },
+    { time: "10:45 pm", icon: <Car className="w-6 h-6" />, event: "Fin de la fiesta" },
   ]
 
   return (
@@ -104,4 +104,3 @@ export default function ItinerarySection() {
     </section>
   )
 }
-

@@ -47,7 +47,7 @@ export default function PrepareSection() {
               theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
             }`}
           >
-            3 años juntos
+            9 años juntos
           </p>
         </motion.div>
 

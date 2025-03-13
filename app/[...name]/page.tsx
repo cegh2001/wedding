@@ -102,7 +102,7 @@ export default function Home() {
             >
               <HeroSection invite={formattedName} />
               <PrepareSection />
-              <PassportSection />
+              <PassportSection invite={formattedName}/>
               <LocationsSection />
               <AttendanceSection name={formattedName} url={firstParam} />
               <ItinerarySection />

@@ -18,14 +18,14 @@ export default function HeroSection({invite}:Props) {
   if (!mounted) return null
 
   return (
-    <section className="h-screen w-full snap-start flex flex-col items-center justify-center relative overflow-hidden bg-[url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_20241202_152946%5B1%5D.jpg-tXGcoJXTUGvhUjdZPRWuPaM3hOXEJR.jpeg')] bg-cover bg-center">
+    <section className="h-screen w-full snap-start flex flex-col items-center justify-center relative overflow-hidden bg-[url('/foto.jpg')] bg-cover bg-center">
       <div className="absolute inset-0 bg-black/30 z-0"></div>
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="z-10 text-center px-4 mt-16"
+        className="z-10 text-center px-4"
       >
         <div className="mb-6">
           <motion.div
@@ -42,7 +42,7 @@ export default function HeroSection({invite}:Props) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-5xl md:text-7xl font-serif text-white mb-4 capitalize"
+          className="text-4xl md:text-7xl font-serif text-white mb-4 capitalize"
         >
           María Gabriela 
           <br />
@@ -68,7 +68,7 @@ export default function HeroSection({invite}:Props) {
           transition={{ duration: 0.8, delay: 1.5 }}
           className="text-white text-xl md:text-2xl font-light"
         >
-          24 · Mayo · 2025
+          24 · julio · 2025
         </motion.p>
 
         <motion.div

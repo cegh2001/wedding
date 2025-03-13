@@ -1,15 +1,17 @@
 "use client";
 
-import { useRef } from "react"; // Ya no necesitamos useEffect
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import Image from "next/image";
-import DecorativeElement from "./decorative-element";
 import { useTheme } from "@/contexts/ThemeContext";
-// Importar el nuevo hook
 import { useAnimatedBackground } from "@/hooks/useParticleBackground";
 
-export default function PassportSection() {
+interface Props {
+  invite: string;
+}
+
+export default function PassportSection({ invite }: Props) {
   const sectionRef = useRef(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
@@ -18,11 +20,15 @@ export default function PassportSection() {
   // Usar el hook de animación de fondo
   useAnimatedBackground(canvasRef, theme, { count: 70 });
 
+  const primaryColor = theme === "warm" ? "#8a6d46" : "#1a3a5a";
+  const secondaryColor = theme === "warm" ? "#d4a76a" : "#3d7ea6";
+  const bgColor = theme === "warm" ? "#f8f5f1" : "#ffffff";
+
   return (
     <section
       ref={sectionRef}
-      className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 transition-colors duration-300
-                  ${theme === "warm" ? "bg-[#f8f5f1]" : "bg-white"}`}
+      className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 transition-colors duration-300`}
+      style={{ backgroundColor: bgColor }}
     >
       {/* Fondo animado */}
       <canvas
@@ -30,115 +36,115 @@ export default function PassportSection() {
         className="absolute top-0 left-0 w-full h-full pointer-events-none"
       />
 
-      <DecorativeElement type="compass" position="top-8 right-8" delay={0.5} />
-      <DecorativeElement type="heart" position="bottom-8 left-8" delay={0.7} />
-
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 max-w-sm md:max-w-lg w-full mx-auto bg-white rounded-lg shadow-2xl overflow-hidden"
-        style={{
-          backgroundImage:
-            theme === "warm"
-              ? "repeating-linear-gradient(45deg, #ffedd5 0, #f8f5f0 10px, transparent 10px, transparent 20px)"
-              : "repeating-linear-gradient(45deg, #E6F4F6 0, #E6F4F6 10px, transparent 100px, transparent 20px)",
-        }}
+        className="relative z-10 w-full mx-auto bg-slate-100 rounded-lg shadow-xl overflow-hidden max-w-[460px] md:max-w-[500px]" 
       >
-        {/* Header Image */}
-        <div className="relative w-full h-36 md:h-48 overflow-hidden">
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20241124-WA0177%5B1%5D.jpg-yr7zEW5IOE9EuFSaEbtSghG9vTeu7w.jpeg"
-            alt="Pareja en la montaña"
-            fill
-            className="object-cover"
-          />
+        {/* Sección superior con mapa mundial */}
+        <div className="relative w-full h-56 overflow-hidden">
+          <div className="relative w-full h-full">
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/passport-HBiAvpRRaEtz1ieTwQ61f4tPCPHm4F.png"
+              alt="Mapa Mundial con Detalles de Boda"
+              fill
+              className="object-contain shadow-b"
+            />
+            {/* Gradiente superpuesto para mejorar visibilidad */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
+          </div>
         </div>
 
-        {/* Passport Content */}
-        <div
-          className={`p-4 md:p-8 border-t-2 ${
-            theme === "warm" ? "border-[#8a6d46]/20" : "border-wedding-navy/20"
-          }`}
-        >
-          <div className="text-center mb-6 md:mb-8">
-            <h2
-              className={`text-xl md:text-2xl font-serif tracking-wide mb-2 ${
-                theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-              }`}
-            >
-              PASAPORTE A NUESTRA BODA
-            </h2>
-            <div className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4">
-              <div
-                className={`w-full h-full rounded-full border-2 flex items-center justify-center ${
-                  theme === "warm" ? "border-[#8a6d46]" : "border-wedding-navy"
-                }`}
-              >
-                <span
-                  className={`font-serif text-base md:text-lg ${
-                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                  }`}
-                >
-                  C&P
-                </span>
-              </div>
+        {/* Sección inferior */}
+        <div className="p-6 flex md:flex-row gap-6">
+          {/* Lado izquierdo - Foto (más grande en móvil) */}
+          <div className="w-full md:w-1/2">
+            <div className="relative w-full h-full overflow-hidden rounded">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20241124-WA0177%5B1%5D.jpg-yr7zEW5IOE9EuFSaEbtSghG9vTeu7w.jpeg"
+                alt="Pareja"
+                fill
+                className="w-full h-full object-cover object-center"
+              />
+              {/* Sombra interna para efecto de foto */}
+              <div className="absolute inset-0 shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]"></div>
             </div>
           </div>
 
-          <div className="space-y-2 md:space-y-4 text-sm md:text-base">
-            {[
-              { label: "Fecha", value: "24 de Mayo, 2025" },
-              { label: "Hora", value: "18:00 H" },
-              { label: "Destino", value: "Galipán " },
-              { label: "Ceremonia", value: "Santa María Reina de Pedralbes" },
-              { label: "Banquete", value: "Restaurante Galipán Grill" },
-            ].map((item, index) => (
-              <div key={index} className="flex">
-                <span
-                  className={`w-24 ${
-                    theme === "warm"
-                      ? "text-[#8a6d46]/60"
-                      : "text-wedding-navy/60"
-                  }`}
-                >
-                  {item.label}
-                </span>
-                <span
-                  className={
-                    theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                  }
-                >
-                  {item.value}
-                </span>
-              </div>
-            ))}
-          </div>
+          {/* Lado derecho - Contenido */}
+          <div className="w-full md:w-1/2 relative">
+            <h2
+              className="text-xl font-bold mb-2"
+              style={{ color: primaryColor }}
+            >
+              PASAPORTE DE BODA
+            </h2>
 
-          <div className="text-center mt-6 md:mt-8">
-            <h3
-              className={`text-xl md:text-xl font-serif tracking-wide ${
-                theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-              }`}
+            <p className="text-sm mb-3" style={{ color: primaryColor }}>
+              PASAPORTE PARA:{" "}
+              <span className="font-semibold" style={{ color: secondaryColor }}>
+                {invite.toUpperCase()}
+              </span>
+            </p>
+
+            <p className="text-sm mb-1" style={{ color: primaryColor }}>
+              A LA BODA DE:
+            </p>
+            <p
+              className="text-base font-semibold mb-3"
+              style={{ color: secondaryColor }}
             >
               María Gabriela & Jhon Alexander
-            </h3>
-          </div>
+            </p>
 
-          {/* Decorative Stamp */}
-          <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-16 h-16 md:w-20 md:h-20 opacity-30">
-            <div
-              className={`w-full h-full rounded-full border-2 flex items-center justify-center rotate-[-15deg] ${
-                theme === "warm" ? "border-[#8a6d46]" : "border-wedding-navy"
-              }`}
+            <p className="text-sm mb-1" style={{ color: primaryColor }}>
+              FECHA DE CEREMONIA:
+            </p>
+            <p
+              className="text-base font-semibold mb-3"
+              style={{ color: secondaryColor }}
             >
-              <span
-                className={`font-serif text-xs md:text-sm ${
-                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
-                }`}
-              >
-                VISA
-              </span>
+              24 de julio, 2025
+            </p>
+
+            <p className="text-sm mb-1" style={{ color: primaryColor }}>
+              LUGAR DE CEREMONIA:
+            </p>
+            <p
+              className="text-base font-semibold mb-1"
+              style={{ color: secondaryColor }}
+            >
+              Santa María Reina de Pedralbes
+            </p>
+          </div>
+          {/* Sello */}
+          <div className="absolute bottom-1.5 right-1.5">
+            <div
+              className="w-16 h-16 rounded-full border-2 flex items-center justify-center rotate-[-15deg] relative"
+              style={{ borderColor: primaryColor }}
+            >
+              <div
+                className="absolute inset-0 rounded-full border border-dashed border-opacity-50"
+                style={{ borderColor: primaryColor }}
+              ></div>
+              <div className="text-center">
+                <div
+                  className="text-xs font-bold"
+                  style={{ color: primaryColor }}
+                >
+                  2025
+                </div>
+                <div
+                  className="text-lg font-bold"
+                  style={{ color: primaryColor }}
+                >
+                  VE
+                </div>
+                <div className="text-[8px]" style={{ color: primaryColor }}>
+                  VENEZUELA
+                </div>
+              </div>
             </div>
           </div>
         </div>
