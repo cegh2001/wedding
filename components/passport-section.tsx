@@ -53,9 +53,7 @@ export default function PassportSection({ invite }: Props) {
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8 }}
-        className={`relative z-10 w-full mx-auto bg-slate-100 rounded-lg shadow-lg overflow-hidden max-w-[460px] md:max-w-[500px] ${
-          theme === "warm" ? "" : "shadow-wedding-skyblue/60"
-        }`}
+        className="relative z-10 w-full mx-auto bg-slate-50 rounded-lg shadow-lg overflow-hidden max-w-[460px] md:max-w-[500px]"
       >
         {/* Sección superior con mapa mundial */}
         <div className="relative w-full h-56 overflow-hidden">
