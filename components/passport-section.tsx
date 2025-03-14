@@ -24,6 +24,19 @@ export default function PassportSection({ invite }: Props) {
   const secondaryColor = theme === "warm" ? "#d4a76a" : "#3d7ea6";
   const bgColor = theme === "warm" ? "#f8f5f1" : "#ffffff";
 
+  function formatName(name: string): string {
+    const lower = name.toLowerCase();
+    const parts = lower.split(" ");
+    return parts
+      .map((word, index, arr) => {
+        if (index === 0 || arr[index - 1] === "de" || arr[index - 1] === "y") {
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        }
+        return word;
+      })
+      .join(" ");
+  }
+
   return (
     <section
       ref={sectionRef}
@@ -40,7 +53,9 @@ export default function PassportSection({ invite }: Props) {
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8 }}
-        className={`relative z-10 w-full mx-auto bg-slate-100 rounded-lg shadow-lg overflow-hidden max-w-[460px] md:max-w-[500px] ${theme === "warm" ? "" : "shadow-wedding-skyblue/60"}`} 
+        className={`relative z-10 w-full mx-auto bg-slate-100 rounded-lg shadow-lg overflow-hidden max-w-[460px] md:max-w-[500px] ${
+          theme === "warm" ? "" : "shadow-wedding-skyblue/60"
+        }`}
       >
         {/* Sección superior con mapa mundial */}
         <div className="relative w-full h-56 overflow-hidden">
@@ -81,14 +96,17 @@ export default function PassportSection({ invite }: Props) {
               PASAPORTE DE BODA
             </h2>
 
-            <p className="text-xs md:text-sm mb-3" style={{ color: primaryColor }}>
-              PASAPORTE PARA:{" "}
-              <span className="font-semibold" style={{ color: secondaryColor }}>
-                {invite.toUpperCase()}
-              </span>
+            <p className="text-xs md:text-sm" style={{ color: primaryColor }}>
+              PASAPORTE PARA:
+            </p>
+            <p
+              className="text-xs md:text-base font-semibold mb-3"
+              style={{ color: secondaryColor }}
+            >
+              {formatName(invite)}
             </p>
 
-            <p className="text-xs md:text-sm mb-1" style={{ color: primaryColor }}>
+            <p className="text-xs md:text-sm" style={{ color: primaryColor }}>
               A LA BODA DE:
             </p>
             <p
@@ -98,7 +116,7 @@ export default function PassportSection({ invite }: Props) {
               María Gabriela & Jhon Alexander
             </p>
 
-            <p className="text-xs md:text-sm mb-1" style={{ color: primaryColor }}>
+            <p className="text-xs md:text-sm" style={{ color: primaryColor }}>
               FECHA DE CEREMONIA:
             </p>
             <p
@@ -108,11 +126,11 @@ export default function PassportSection({ invite }: Props) {
               24 de julio, 2025
             </p>
 
-            <p className="text-xs md:text-sm mb-1" style={{ color: primaryColor }}>
+            <p className="text-xs md:text-sm" style={{ color: primaryColor }}>
               LUGAR DE CEREMONIA:
             </p>
             <p
-              className="text-xs md:text-base font-semibold mb-1"
+              className="text-xs md:text-base font-semibold"
               style={{ color: secondaryColor }}
             >
               Centro Médico de Ccs, San Bernandino y Parada en Galipan, Macuto
