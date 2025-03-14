@@ -40,7 +40,7 @@ export default function PassportSection({ invite }: Props) {
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 w-full mx-auto bg-slate-100 rounded-lg shadow-xl overflow-hidden max-w-[460px] md:max-w-[500px]" 
+        className={`relative z-10 w-full mx-auto bg-slate-100 rounded-lg shadow-lg overflow-hidden max-w-[460px] md:max-w-[500px] ${theme === "warm" ? "" : "shadow-wedding-skyblue/60"}`} 
       >
         {/* Sección superior con mapa mundial */}
         <div className="relative w-full h-56 overflow-hidden">
@@ -57,7 +57,7 @@ export default function PassportSection({ invite }: Props) {
         </div>
 
         {/* Sección inferior */}
-        <div className="p-6 flex md:flex-row gap-6">
+        <div className="p-6 flex md:flex-row gap-4">
           {/* Lado izquierdo - Foto (más grande en móvil) */}
           <div className="w-full md:w-1/2">
             <div className="relative w-full h-full overflow-hidden rounded">
@@ -75,7 +75,7 @@ export default function PassportSection({ invite }: Props) {
           {/* Lado derecho - Contenido */}
           <div className="md:w-1/2 relative">
             <h2
-              className="text-base md:text-xl font-bold mb-2"
+              className="text-sm md:text-xl font-bold mb-2"
               style={{ color: primaryColor }}
             >
               PASAPORTE DE BODA
@@ -92,7 +92,7 @@ export default function PassportSection({ invite }: Props) {
               A LA BODA DE:
             </p>
             <p
-              className="text-sm md:text-base font-semibold mb-3"
+              className="text-xs md:text-base font-semibold mb-3"
               style={{ color: secondaryColor }}
             >
               María Gabriela & Jhon Alexander
@@ -102,7 +102,7 @@ export default function PassportSection({ invite }: Props) {
               FECHA DE CEREMONIA:
             </p>
             <p
-              className="text-sm md:text-base font-semibold mb-3"
+              className="text-xs md:text-base font-semibold mb-3"
               style={{ color: secondaryColor }}
             >
               24 de julio, 2025
