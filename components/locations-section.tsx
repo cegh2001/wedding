@@ -16,9 +16,10 @@ export default function LocationsSection() {
   const locations = {
     escala: {
       icon: <Church className="w-12 h-12" />,
-      name: "Santa María Reina de Pedralbes",
-      address: ["Carrer Miret i Sans 36,", "08034, Barcelona"],
-      mapsUrl: "https://maps.google.com",
+      name: "Centro Médico de Ccs, San Bernandino y Parada en Galipan, Macuto",
+      address: ["San Bernandino,", "1011 Caracas, Distrito Capital"],
+      mapsUrl:
+        "https://www.bing.com/maps?&cp=10.528815~-66.893418&lvl=14.22&pi=0&tstt0=De%20Centro%20M%C3%A9dico%20de%20Caracas%20a%20Carretera%20Galip%C3%A1n%20-%20Macuto%2C%20Macuto%2C%20Estado%20Vargas&tsts0=%2526ty%253D0%2526rtp%253Dpos.10.512032_-66.896912_Av.%252520Eraso%25252C%252520Plaza%252520El%252520Estanque%25252C%252520Urb.%252520San%252520Bernardino%25252C%252520Caracas%2525201011_Centro%252520M%2525C3%2525A9dico%252520de%252520Caracas__e_~pos.10.548588_-66.89029_Carretera%252520Galip%2525C3%2525A1n%252520-%252520Macuto%25252C%252520Macuto%25252C%252520Estado%252520Vargas_Carretera%252520Galip%2525C3%2525A1n%252520-%252520Macuto%25252C%252520Macuto%25252C%252520Estado%252520Vargas__e_%2526mode%253Dm%2526sri%253D0%2526u%253D1&ftst=0&ftics=False&v=2&sV=2&form=S00027",
     },
     destino: {
       icon: <Home className="w-12 h-12" />,

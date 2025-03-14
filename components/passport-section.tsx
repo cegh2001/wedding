@@ -73,49 +73,49 @@ export default function PassportSection({ invite }: Props) {
           </div>
 
           {/* Lado derecho - Contenido */}
-          <div className="w-full md:w-1/2 relative">
+          <div className="md:w-1/2 relative">
             <h2
-              className="text-xl font-bold mb-2"
+              className="text-base md:text-xl font-bold mb-2"
               style={{ color: primaryColor }}
             >
               PASAPORTE DE BODA
             </h2>
 
-            <p className="text-sm mb-3" style={{ color: primaryColor }}>
+            <p className="text-xs md:text-sm mb-3" style={{ color: primaryColor }}>
               PASAPORTE PARA:{" "}
               <span className="font-semibold" style={{ color: secondaryColor }}>
                 {invite.toUpperCase()}
               </span>
             </p>
 
-            <p className="text-sm mb-1" style={{ color: primaryColor }}>
+            <p className="text-xs md:text-sm mb-1" style={{ color: primaryColor }}>
               A LA BODA DE:
             </p>
             <p
-              className="text-base font-semibold mb-3"
+              className="text-sm md:text-base font-semibold mb-3"
               style={{ color: secondaryColor }}
             >
               María Gabriela & Jhon Alexander
             </p>
 
-            <p className="text-sm mb-1" style={{ color: primaryColor }}>
+            <p className="text-xs md:text-sm mb-1" style={{ color: primaryColor }}>
               FECHA DE CEREMONIA:
             </p>
             <p
-              className="text-base font-semibold mb-3"
+              className="text-sm md:text-base font-semibold mb-3"
               style={{ color: secondaryColor }}
             >
               24 de julio, 2025
             </p>
 
-            <p className="text-sm mb-1" style={{ color: primaryColor }}>
+            <p className="text-xs md:text-sm mb-1" style={{ color: primaryColor }}>
               LUGAR DE CEREMONIA:
             </p>
             <p
-              className="text-base font-semibold mb-1"
+              className="text-xs md:text-base font-semibold mb-1"
               style={{ color: secondaryColor }}
             >
-              Santa María Reina de Pedralbes
+              Centro Médico de Ccs, San Bernandino y Parada en Galipan, Macuto
             </p>
           </div>
           {/* Sello */}
