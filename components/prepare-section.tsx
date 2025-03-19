@@ -3,12 +3,10 @@
 import { useRef, useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { useTheme } from "@/contexts/ThemeContext"
 
 export default function PrepareSection() {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 })
-  const { theme } = useTheme()
   const [activePhotoIndex, setActivePhotoIndex] = useState(0)
 
   // Definir las fotos con posiciones personalizadas
@@ -19,7 +17,7 @@ export default function PrepareSection() {
     },
     {
       url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20250319-WA0002.jpg-NFp6V35Z4lYAfHMEWQ89mI4kcEDBsh.jpeg",
-      position: "center",
+      position: "center", // Cambiar
     },
     {
       url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20250319-WA0007.jpg-vBdWb0SsJLy172I2Cs4tDQSEYAncyT.jpeg",
@@ -31,7 +29,7 @@ export default function PrepareSection() {
     },
     {
       url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20250319-WA0009.jpg-urXsGCLvpSlfgRCVMnuG5XCzjFIVBM.jpeg",
-      position: "center 40%",
+      position: "center 40%", // Cambiar
     },
     {
       url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20250319-WA0001.jpg-hcgmTJo7K14p0otEFpOnY0j8Xdwox3.jpeg",
@@ -82,10 +80,13 @@ export default function PrepareSection() {
               transition={{ duration: 1.5 }}
             >
               <div
-                className="absolute inset-0"
+                className={`absolute inset-0 ${
+                  [1, 4].includes(index)
+                    ? "md:bg-cover bg-[length:200px_289px]"
+                    : "bg-cover"
+                }`}
                 style={{
                   backgroundImage: `url(${photo.url})`,
-                  backgroundSize: "cover",
                   backgroundPosition: photo.position,
                   backgroundRepeat: "no-repeat",
                 }}
@@ -138,5 +139,5 @@ export default function PrepareSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
