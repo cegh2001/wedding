@@ -96,11 +96,11 @@ export default function FarewellSection({invite}: Props) {
               </div>
 
               <div
-                className={`flex justify-center gap-8 ${
+                className={`flex justify-center gap-2 md:gap-8 ${
                   theme === "warm"
                     ? "text-[#8a6d46]/70"
                     : "text-wedding-navy/70"
-                } text-sm`}
+                } text-[10px] md:text-sm`}
               >
                 <span>TYPE: BODA</span>
                 <span>CODE: GALIPÁN</span>

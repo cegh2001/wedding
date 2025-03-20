@@ -16,25 +16,25 @@ const navigation = [
 
 const Footer: React.FC = () => {
     return (
-        <footer className="absolute bottom-0 bg-white rounded-lg">
-            <div className="mx-auto max-w-7xl px-6 py-2 md:flex md:gap-x-4 md:items-center md:justify-between lg:px-8">
-                <div className="flex justify-center gap-x-6 md:order-2">
-                    {navigation.map((item) => (
-                        <a
-                            key={item.name}
-                            href={item.href}
-                            className="text-gray-600 hover:text-gray-800"
-                        >
-                            <span className="sr-only">{item.name}</span>
-                            <item.icon aria-hidden="true" className="w-6 h-6" />
-                        </a>
-                    ))}
-                </div>
-                <p className="mt-8 text-center text-sm text-gray-600 md:order-1 md:mt-0">
-                    &copy; 2021 Solve Express, Inc. All rights reserved.
-                </p>
-            </div>
-        </footer>
+      <footer className="absolute bottom-0 rounded-lg">
+        <div className="mx-auto max-w-7xl py-2 flex gap-x-4 items-center justify-between px-8">
+          <p className="text-center text-sm text-gray-600">
+            &copy; 2021 Solve Express
+          </p>
+          <div className="flex justify-center gap-x-6 order-2">
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-600 hover:text-gray-800"
+              >
+                <span className="sr-only">{item.name}</span>
+                <item.icon aria-hidden="true" className="w-6 h-6" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </footer>
     );
 };
 
