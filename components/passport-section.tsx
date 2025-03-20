@@ -63,8 +63,6 @@ export default function PassportSection({ invite }: Props) {
     }
   }
 
-  console.log(invite)
-
   return (
     <section
       ref={sectionRef}
