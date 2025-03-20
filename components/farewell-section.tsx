@@ -36,7 +36,7 @@ export default function FarewellSection({invite}: Props) {
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
-                  ${theme === "warm" ? "bg-[#f8f5f1]" : "bg-white"}`}
+                  ${theme === "warm" ? "bg-[#f8f5f1]" : "bg-[#f0f4f8]"}`}
     >
       <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
         <div className="absolute inset-0 w-[200%]">

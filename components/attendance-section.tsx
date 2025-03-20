@@ -104,7 +104,7 @@ export default function AttendanceSection({ name, url }: Props) {
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300 ${
-        theme === "warm" ? "bg-[#f8f5f0]" : "bg-white"
+        theme === "warm" ? "bg-[#f8f5f0]" : "bg-[#f0f4f8]"
       }`}
     >
       {/* Fondo animado */}

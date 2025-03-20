@@ -13,7 +13,7 @@ export default function Loading() {
   }, [])
 
   // Usa un fondo neutro para la renderización inicial del servidor
-  const bgColor = mounted ? (theme === "warm" ? "bg-[#f8f5f1]" : "bg-white") : "bg-white"
+  const bgColor = mounted ? (theme === "warm" ? "bg-[#f8f5f1]" : "bg-[#f0f4f8]") : "bg-[#f0f4f8]"
 
   return (
     <div

@@ -22,7 +22,7 @@ export default function PhotosSection() {
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 py-16 transition-colors duration-300
-                  ${theme === "warm" ? "bg-[#f8f5f1]" : "bg-white"}`}
+                  ${theme === "warm" ? "bg-[#f8f5f1]" : "bg-[#f0f4f8]"}`}
     >
       {/* Fondo animado */}
       <canvas
@@ -49,38 +49,68 @@ export default function PhotosSection() {
           </h2>
 
           <div className="flex justify-center mb-8">
-            <div className={`w-32 h-[2px] ${theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-turquoise/30"}`}></div>
+            <div
+              className={`w-32 h-[2px] ${
+                theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-turquoise/30"
+              }`}
+            ></div>
           </div>
 
-          <p className={`text-xl mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
+          <p
+            className={`text-xl mb-2 ${
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+            }`}
+          >
             El día de la boda toma muchas fotos
           </p>
-          <p className={`text-xl mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
+          <p
+            className={`text-xl mb-2 ${
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+            }`}
+          >
             y déjanos un bonito
           </p>
-          <p className={`text-xl mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
+          <p
+            className={`text-xl mb-2 ${
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+            }`}
+          >
             y divertido recuerdo
           </p>
-          <p className={`text-xl mb-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
+          <p
+            className={`text-xl mb-2 ${
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+            }`}
+          >
             haciendo clic en el icono
           </p>
-          <p className={`text-xl mb-6 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
+          <p
+            className={`text-xl mb-6 ${
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+            }`}
+          >
             de la cámara de fotos
           </p>
 
           <div className="flex justify-center mb-4">
-            <div className={`w-32 h-[2px] ${theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-turquoise/30"}`}></div>
+            <div
+              className={`w-32 h-[2px] ${
+                theme === "warm" ? "bg-[#8a6d46]/30" : "bg-wedding-turquoise/30"
+              }`}
+            ></div>
           </div>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+          animate={
+            isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+          }
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex justify-center"
         >
           <a
-            href="https://drive.google.com"
+            href="https://drive.google.com/drive/folders/1_k7O0cqldSd5Lq3m8AMNcm0xWZJqZP4N?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block transition-transform hover:scale-105 focus:scale-105"
@@ -92,12 +122,23 @@ export default function PhotosSection() {
                   : "bg-wedding-skyblue/50 border border-wedding-navy/30"
               }`}
             >
-              <Camera className={`w-12 h-12 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`} />
+              <Camera
+                className={`w-12 h-12 ${
+                  theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+                }`}
+              />
             </div>
-            <p className={`text-center mt-2 ${theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}> (clic)</p>
+            <p
+              className={`text-center mt-2 ${
+                theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
+              }`}
+            >
+              {" "}
+              (clic)
+            </p>
           </a>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

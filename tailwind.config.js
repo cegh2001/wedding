@@ -79,6 +79,7 @@ module.exports = {
       },
       boxShadow: {
         b: "0px -7px 5px -2px rgba(0,0,0,0.10) inset",
+        t: "0px 7px 5px -2px rgba(0,0,0,0.10) inset",
         center: "0 0px 6px 0 rgb(0 0 0 / 0.1)",
       },
     },

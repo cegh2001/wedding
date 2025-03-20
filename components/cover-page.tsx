@@ -25,7 +25,7 @@ export default function CoverPage({ onEnter, startAudio }: CoverPageProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
       className={`fixed inset-0 flex flex-col items-center justify-center z-40 cursor-pointer ${
-        theme === "warm" ? "bg-[#f8f5f1]" : "bg-white"
+        theme === "warm" ? "bg-[#f8f5f1]" : "bg-[#f0f4f8]"
       }`}
       onClick={handleEnter}
     >

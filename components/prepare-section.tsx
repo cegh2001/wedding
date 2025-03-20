@@ -1,22 +1,34 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import Image from "next/image";
 import { useTheme } from "@/contexts/ThemeContext";
+import LottieAnimation from "./lottie-animation";
 
 export default function PrepareSection() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
   const { theme } = useTheme();
 
+  // Necesitamos pasar una clave que NO cambie con el tema
+  const memoizedLottie = useMemo(
+    () => <LottieAnimation key="permanent-lottie" />,
+    []
+  );
+
   return (
     <section
       ref={sectionRef}
       className={`h-screen w-full snap-start flex flex-col items-center justify-center relative px-4 md:px-8 transition-colors duration-300
-                  ${theme === "warm" ? "bg-[#f8f5f1]" : "bg-white"}`}
+                  ${theme === "warm" ? "bg-[#f8f5f1]" : "bg-[#f0f4f8]"}`}
     >
+      {/* Envolvemos la animación en un div que persiste independientemente del tema */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+        {memoizedLottie}
+      </div>
+
       <div className="absolute inset-0 opacity-30 z-0 overflow-hidden">
         <div className="absolute inset-0 w-[200%]">
           <Image

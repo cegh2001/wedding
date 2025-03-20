@@ -22,7 +22,7 @@ export default function PassportSection({ invite }: Props) {
 
   const primaryColor = theme === "warm" ? "#8a6d46" : "#1a3a5a";
   const secondaryColor = theme === "warm" ? "#d4a76a" : "#3d7ea6";
-  const bgColor = theme === "warm" ? "#f8f5f1" : "#ffffff";
+  const bgColor = theme === "warm" ? "#f8f5f1" : "#f0f4f8";
 
   function formatName(name: string): string {
     const lower = name.toLowerCase();
@@ -53,7 +53,7 @@ export default function PassportSection({ invite }: Props) {
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 w-full mx-auto bg-slate-50 rounded-lg shadow-lg overflow-hidden max-w-[460px] md:max-w-[500px] grid grid-rows-2"
+        className="relative z-10 w-full mx-auto bg-slate-50 rounded-lg border border-slate-200 shadow-center overflow-hidden max-w-[460px] md:max-w-[500px] grid grid-rows-2"
       >
         {/* Sección superior con mapa mundial */}
         <div className="relative w-full overflow-hidden">
@@ -70,7 +70,7 @@ export default function PassportSection({ invite }: Props) {
         </div>
 
         {/* Sección inferior */}
-        <div className="p-6 flex md:flex-row gap-4">
+        <div className="p-6 flex md:flex-row gap-4 shadow-t">
           {/* Lado izquierdo - Foto (más grande en móvil) */}
           <div className="w-full md:w-1/2">
             <div className="relative w-full h-full overflow-hidden rounded">
