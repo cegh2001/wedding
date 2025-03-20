@@ -21,7 +21,7 @@ export default function CountdownSection() {
 
   useEffect(() => {
     // Set your wedding date here - format: year, month (0-11), day, hour, minute
-    const weddingDate = new Date(2025, 4, 24, 18, 0, 0).getTime()
+    const weddingDate = new Date(2025, 6, 24, 16, 0, 0).getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime()
