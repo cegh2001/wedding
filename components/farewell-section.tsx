@@ -276,6 +276,11 @@ export default function FarewellSection({invite}: Props) {
                 </div>
               </div>
             </div>
+
+            <div className={`mt-4 text-center text-xs ${
+              theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"}`}>
+              Elaborado por Solve Express
+            </div>
           </div>
         </motion.div>
       </div>
