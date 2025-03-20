@@ -25,17 +25,45 @@ export default function PassportSection({ invite }: Props) {
   const bgColor = theme === "warm" ? "#f8f5f1" : "#f0f4f8";
 
   function formatName(name: string): string {
-    const lower = name.toLowerCase();
-    const parts = lower.split(" ");
-    return parts
-      .map((word, index, arr) => {
-        if (index === 0 || arr[index - 1] === "de" || arr[index - 1] === "y") {
+    try {
+      // Primero decodificar los caracteres codificados en URL
+      const decodedName = decodeURIComponent(name);
+
+      // Luego reemplazar los guiones por espacios
+      const nameWithSpaces = decodedName.replace(/-/g, " ");
+
+      const lower = nameWithSpaces.toLowerCase();
+      const parts = lower.split(" ");
+      return parts
+        .map((word) => {
+          // Capitalizar cada palabra que no sea 'de' o 'y' (preposiciones y conjunciones)
+          if (word === "de" || word === "y") {
+            return word;
+          }
+          // Capitalizar todas las demás palabras (nombres y apellidos)
           return word.charAt(0).toUpperCase() + word.slice(1);
-        }
-        return word;
-      })
-      .join(" ");
+        })
+        .join(" ");
+    } catch (e) {
+      // Si hay un error en la decodificación, volver al método original
+      console.error("Error decodificando nombre:", e);
+
+      // Método original como respaldo
+      const nameWithSpaces = name.replace(/-/g, " ");
+      const lower = nameWithSpaces.toLowerCase();
+      const parts = lower.split(" ");
+      return parts
+        .map((word) => {
+          if (word === "de" || word === "y") {
+            return word;
+          }
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(" ");
+    }
   }
+
+  console.log(invite)
 
   return (
     <section
@@ -131,7 +159,9 @@ export default function PassportSection({ invite }: Props) {
               className="text-xs md:text-base font-semibold"
               style={{ color: secondaryColor }}
             >
-              Centro Médico de Ccs, San Bernandino y Parada en Galipan, Macuto
+              Restaurant
+              <br />
+              Galipán Grill
             </p>
           </div>
           {/* Sello */}

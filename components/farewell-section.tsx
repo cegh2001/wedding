@@ -12,16 +12,27 @@ interface Props {
 }
 
 export default function FarewellSection({invite}: Props) {
-  const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: false, amount: 0.3 })
-  const { theme } = useTheme()
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
+  const { theme } = useTheme();
+
+  // Función para decodificar acentos en el nombre
+  function decodeInviteName(name: string): string {
+    try {
+      // Decodificar caracteres URL-encoded (como %C3%A1 → á)
+      return decodeURIComponent(name);
+    } catch (e) {
+      console.error("Error decodificando nombre:", e);
+      return name; // Devolver el nombre original si hay error
+    }
+  }
 
   // Colores prohibidos con sus nombres
   const prohibidosColores = [
-    { color: "#7b1fa2", nombre: "Morado" },  // morado fuerte
+    { color: "#7b1fa2", nombre: "Morado" }, // morado fuerte
     { color: "#556B2F", nombre: "Aceituna" }, // aceituna
     { color: "#8B0000", nombre: "Vinotinto" }, // vinotinto
-  ]
+  ];
 
   // Colores recomendados (pasteles)
   const recomendadosColores = [
@@ -30,7 +41,7 @@ export default function FarewellSection({invite}: Props) {
     { color: "#DCEDC8", nombre: "Verde" },
     { color: "#FFF9C4", nombre: "Amarillo" },
     { color: "#E1BEE7", nombre: "Lavanda" },
-  ]
+  ];
 
   return (
     <section
@@ -74,7 +85,7 @@ export default function FarewellSection({invite}: Props) {
                     theme === "warm" ? "text-[#8a6d46]" : "text-wedding-navy"
                   }`}
                 >
-                  {invite}
+                  {decodeInviteName(invite)}
                 </h2>
                 <div
                   className={`h-[1px] flex-1 ${
